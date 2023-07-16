@@ -1,6 +1,6 @@
-﻿using System;
+﻿namespace FarsiLibrary.Core.Utils;
 
-namespace FarsiLibrary.Utils;
+using System;
 
 /// <summary>
 /// Classes to convert a number to its persian written form. It accepts both an Integer or Long as input parameter.

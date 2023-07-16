@@ -1,4 +1,4 @@
-﻿namespace FarsiLibrary.Utils.Internals;
+﻿namespace FarsiLibrary.Core.Utils.Internals;
 
 using System.IO;
 using System.Runtime.InteropServices;

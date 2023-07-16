@@ -1,7 +1,7 @@
-﻿using System;
-using System.Reflection;
+﻿namespace FarsiLibrary.Core.Utils.Internals;
 
-namespace FarsiLibrary.Utils.Internals;
+using System;
+using System.Reflection;
 
 internal static class ReflectionHelper
 {

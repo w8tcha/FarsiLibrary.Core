@@ -1,6 +1,6 @@
-﻿using System;
+﻿namespace FarsiLibrary.Core.Utils.Internals;
 
-namespace FarsiLibrary.Utils.Internals;
+using System;
 
 /// <summary>
 /// Helper class for guard statements, which allow prettier

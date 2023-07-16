@@ -1,9 +1,9 @@
-﻿namespace FarsiLibrary.Utils;
+﻿namespace FarsiLibrary.Core.Utils;
 
 using System;
 using System.Globalization;
 
-using FarsiLibrary.Utils.Internals;
+using FarsiLibrary.Core.Utils.Internals;
 
 using DateTimeFormatInfo=System.Globalization.DateTimeFormatInfo;
 

@@ -1,4 +1,4 @@
-namespace FarsiLibrary.Utils.Formatter;
+namespace FarsiLibrary.Core.Utils.Formatter;
 
 public class Duration
 {

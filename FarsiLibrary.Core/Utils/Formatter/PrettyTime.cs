@@ -1,8 +1,9 @@
+namespace FarsiLibrary.Core.Utils.Formatter;
+
 using System;
 using System.Collections.Generic;
-using FarsiLibrary.Utils.Formatter.TimeUnits;
 
-namespace FarsiLibrary.Utils.Formatter;
+using FarsiLibrary.Core.Utils.Formatter.TimeUnits;
 
 public class PrettyTime
 {

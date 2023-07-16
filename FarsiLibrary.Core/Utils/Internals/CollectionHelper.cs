@@ -1,7 +1,7 @@
+namespace FarsiLibrary.Core.Utils.Internals;
+
 using System;
 using System.Collections.Generic;
-
-namespace FarsiLibrary.Utils.Internals;
 
 public static class CollectionHelper
 {

@@ -1,8 +1,8 @@
-﻿using FarsiLibrary.Utils.Internals;
+﻿namespace FarsiLibrary.Core.Utils;
+
 using System;
 
-namespace FarsiLibrary.Utils;
-
+using FarsiLibrary.Core.Utils.Internals;
 
 /// <summary>Class to convert PersianDate into normal DateTime value and vice versa.
 /// <seealso cref="PersianDate"/>

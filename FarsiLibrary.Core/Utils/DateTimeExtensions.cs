@@ -1,8 +1,9 @@
-﻿using System;
-using FarsiLibrary.Utils.Formatter;
-using FarsiLibrary.Utils.Internals;
+﻿namespace FarsiLibrary.Core.Utils;
 
-namespace FarsiLibrary.Utils;
+using System;
+
+using FarsiLibrary.Core.Utils.Formatter;
+using FarsiLibrary.Core.Utils.Internals;
 
 public static class DateTimeExtensions
 {

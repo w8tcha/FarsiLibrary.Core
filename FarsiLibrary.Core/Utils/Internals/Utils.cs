@@ -1,4 +1,4 @@
-namespace FarsiLibrary.Utils.Internals;
+namespace FarsiLibrary.Core.Utils.Internals;
 
 internal static class Util
 {

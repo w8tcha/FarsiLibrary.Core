@@ -1,4 +1,4 @@
-﻿namespace FarsiLibrary.Utils;
+﻿namespace FarsiLibrary.Core.Utils;
 
 using System;
 using System.Collections;
@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 
-using FarsiLibrary.Localization;
-using FarsiLibrary.Utils.Exceptions;
-using FarsiLibrary.Utils.Internals;
+using FarsiLibrary.Core.Localization;
+using FarsiLibrary.Core.Utils.Exceptions;
+using FarsiLibrary.Core.Utils.Internals;
 
 /// <summary>
 /// PersianDate class to work with dates in Jalali calendar transparently.

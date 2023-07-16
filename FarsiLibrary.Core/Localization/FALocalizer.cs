@@ -1,4 +1,4 @@
-﻿namespace FarsiLibrary.Localization;
+﻿namespace FarsiLibrary.Core.Localization;
 
 /// <summary>
 /// Farsi Localizer

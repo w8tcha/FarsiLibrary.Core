@@ -1,7 +1,7 @@
-namespace FarsiLibrary.Localization;
+namespace FarsiLibrary.Core.Localization;
 
 /// <summary>
-/// Various Strings that could be translater in Localizers.
+/// Various Strings that could be translator in Localizers.
 /// </summary>
 public enum StringID
 {

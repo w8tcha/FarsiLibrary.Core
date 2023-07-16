@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿namespace FarsiLibrary.Core.Utils;
 
-namespace FarsiLibrary.Utils;
+using System.Collections.Generic;
 
 internal class PersianWeekDayNames
 {

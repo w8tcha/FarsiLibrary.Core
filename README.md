@@ -1,4 +1,9 @@
+# FarsiLibrary.Core
+========================
+
 ![build status](https://github.com/w8tcha/FarsiLibrary.Core/actions/workflows/build.yml/badge.svg)
+
+[![NuGet](https://img.shields.io/nuget/v/FarsiLibrary.Core.svg)](https://nuget.org/packages/FarsiLibrary.Core)
 
 This is a library of date functions for .NET Core 7.0.
 

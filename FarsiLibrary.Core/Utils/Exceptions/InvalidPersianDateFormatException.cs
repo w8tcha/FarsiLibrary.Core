@@ -1,4 +1,4 @@
-namespace FarsiLibrary.Utils.Exceptions;
+namespace FarsiLibrary.Core.Utils.Exceptions;
 
 using System;
 

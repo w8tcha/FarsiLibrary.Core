@@ -1,9 +1,9 @@
-﻿using System.Globalization;
-using FarsiLibrary.Localization;
+﻿namespace FarsiLibrary.Core.Utils;
 
-namespace FarsiLibrary.Utils;
-
+using System.Globalization;
 using System.Linq;
+
+using FarsiLibrary.Core.Localization;
 
 /// <summary>
 /// Helper class to convert numbers to it's farsi equivalent. Use this class' methods to overcome a problem in displaying farsi numeric values.

@@ -1,4 +1,4 @@
-﻿namespace FarsiLibrary.Utils;
+﻿namespace FarsiLibrary.Core.Utils;
 
 using System.Linq;
 

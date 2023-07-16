@@ -1,4 +1,4 @@
-namespace FarsiLibrary.Utils.Formatter.TimeUnits;
+namespace FarsiLibrary.Core.Utils.Formatter.TimeUnits;
 
 public class Millisecond : AbstractTimeUnit
 {

@@ -1,6 +1,6 @@
-using FarsiLibrary.Localization;
+namespace FarsiLibrary.Core.Utils.Formatter;
 
-namespace FarsiLibrary.Utils.Formatter;
+using FarsiLibrary.Core.Localization;
 
 public abstract class AbstractTimeUnit : ITimeUnit
 {

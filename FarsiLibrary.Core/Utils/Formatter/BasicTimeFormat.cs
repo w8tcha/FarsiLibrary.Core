@@ -1,9 +1,9 @@
+namespace FarsiLibrary.Core.Utils.Formatter;
+
 using System;
-using FarsiLibrary.Utils.Internals;
-
-namespace FarsiLibrary.Utils.Formatter;
-
 using System.Globalization;
+
+using FarsiLibrary.Core.Utils.Internals;
 
 public class BasicTimeFormat : ITimeFormat
 {

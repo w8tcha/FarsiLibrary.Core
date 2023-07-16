@@ -1,10 +1,10 @@
-namespace FarsiLibrary.Utils;
+namespace FarsiLibrary.Core.Utils;
 
 using System;
 using System.Globalization;
 
-using FarsiLibrary.Localization;
-using FarsiLibrary.Utils.Exceptions;
+using FarsiLibrary.Core.Localization;
+using FarsiLibrary.Core.Utils.Exceptions;
 
 /// <summary>
 /// PersianCalendar calendar. Persian calendar, also named Jalaali calendar, was first based on Solar year by Omar Khayyam, the great Iranian poet, astrologer and scientist.

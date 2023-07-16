@@ -1,6 +1,6 @@
-﻿using System;
+﻿namespace FarsiLibrary.Core.Utils;
 
-namespace FarsiLibrary.Utils;
+using System;
 
 public sealed class PersianDateTimeFormatInfo
 {

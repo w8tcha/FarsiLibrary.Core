@@ -1,9 +1,9 @@
-﻿namespace FarsiLibrary.Utils;
+﻿namespace FarsiLibrary.Core.Utils;
 
 using System.ComponentModel;
 using System.Globalization;
 
-using FarsiLibrary.Utils.Internals;
+using FarsiLibrary.Core.Utils.Internals;
 
 public class CultureManager
 {

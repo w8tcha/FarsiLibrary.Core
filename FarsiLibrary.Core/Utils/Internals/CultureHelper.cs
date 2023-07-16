@@ -1,8 +1,10 @@
-﻿using System;
+﻿namespace FarsiLibrary.Core.Utils.Internals;
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace FarsiLibrary.Utils.Internals;
+using PersianCalendar = FarsiLibrary.Core.Utils.PersianCalendar;
 
 /// <summary>
 /// Base culture information
