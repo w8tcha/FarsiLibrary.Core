@@ -1,6 +1,10 @@
 ![build status](https://github.com/w8tcha/FarsiLibrary.Core/actions/workflows/build.yml/badge.svg)
 
 This is a library of date functions for .NET Core 7.0.
+
+This is a Forked Version of the orignal Project for .NET Framework 4.8 by @HEskandari
+
+https://github.com/HEskandari/FarsiLibrary
  
 The initial [article][1] was first published in April 2006 on CodeProject website and the WPF 
 version was released soon after WPF was still in early versions and was one of the pioneers 
