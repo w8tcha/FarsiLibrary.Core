@@ -16,3 +16,4 @@ _ReSharper.*
 publish
 **/packages/*
 !**/packages/repositories.config
+FarsiLibrary.sln.DotSettings.user
