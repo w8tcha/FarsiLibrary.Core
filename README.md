@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/b6qjwi71527ifh0g/branch/master?svg=true)](https://ci.appveyor.com/project/HEskandari/farsilibrary/branch/master)
+![build status](https://github.com/w8tcha/FarsiLibrary.Core/actions/workflows/build.yml/badge.svg)
 
 This is a library of date functions for .NET Core 7.0.
  
