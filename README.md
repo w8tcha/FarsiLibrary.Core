@@ -1,7 +1,7 @@
 # FarsiLibrary.Core
 ========================
 
-[![build status](https://github.com/w8tcha/FarsiLibrary.Core/actions/workflows/build.yml/badge.svg)](https://github.com/w8tcha/FarsiLibrary.Core/actions) ![license](https://img.shields.io/github/license/w8tcha/FarsiLibrary.Core)
+[![build status](https://github.com/w8tcha/FarsiLibrary.Core/actions/workflows/build.yml/badge.svg)](https://github.com/w8tcha/FarsiLibrary.Core/actions) [![license](https://img.shields.io/github/license/w8tcha/FarsiLibrary.Core)](https://github.com/w8tcha/FarsiLibrary.Core/blob/master/License.md)
 
 [![NuGet](https://img.shields.io/nuget/v/FarsiLibrary.Core.svg)](https://nuget.org/packages/FarsiLibrary.Core)
 
