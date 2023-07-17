@@ -1,11 +1,12 @@
-﻿using PersianCalendar=FarsiLibrary.Utils.PersianCalendar;
+﻿using PersianCalendar=FarsiLibrary.Core.Utils.PersianCalendar;
 
 namespace FarsiLibrary.Tests;
 
 using System;
 using System.Linq;
 
-using FarsiLibrary.Utils.Exceptions;
+using FarsiLibrary.Core.Utils;
+using FarsiLibrary.Core.Utils.Exceptions;
 
 public class PersianCalendarTest
 {
@@ -101,11 +102,11 @@ public class PersianCalendarTest
     [Fact]
     public void Can_Get_Leap_Year()
     {
-        const int leap = 1387;
-        const int normal = 1386;
+        const int Leap = 1387;
+        const int Normal = 1386;
 
-        var result1 = this.calendar.IsLeapYear(leap);
-        var result2 = this.calendar.IsLeapYear(normal);
+        var result1 = this.calendar.IsLeapYear(Leap);
+        var result2 = this.calendar.IsLeapYear(Normal);
 
         Assert.True(result1);
         Assert.False(result2);

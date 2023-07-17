@@ -1,10 +1,11 @@
-﻿using PersianCalendar=FarsiLibrary.Utils.PersianCalendar;
+﻿using PersianCalendar=FarsiLibrary.Core.Utils.PersianCalendar;
 
 namespace FarsiLibrary.Tests;
 
 using System;
 using System.Linq;
 
+using FarsiLibrary.Core.Utils;
 using FarsiLibrary.Tests.Helpers;
 
 public class PersianCultureInfoTests
@@ -73,7 +74,7 @@ public class PersianCultureInfoTests
     {
         var ci = new PersianCultureInfo();
 
-        Assert.Throws<ArgumentNullException>(() => ci.DateTimeFormat = null);
+        Assert.Throws<ArgumentNullException>(() => ci.DateTimeFormat = null!);
     }
 
     [Fact]

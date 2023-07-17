@@ -1,11 +1,12 @@
-using PersianCalendar=FarsiLibrary.Utils.PersianCalendar;
+using PersianCalendar=FarsiLibrary.Core.Utils.PersianCalendar;
 
 namespace FarsiLibrary.Tests;
 
 using System;
 
+using FarsiLibrary.Core.Utils;
+using FarsiLibrary.Core.Utils.Internals;
 using FarsiLibrary.Tests.Helpers;
-using FarsiLibrary.Utils.Internals;
 
 public class InternalTests
 {
@@ -13,7 +14,7 @@ public class InternalTests
     public void Can_Get_IndexOfDay_For_PersianCalendar_Using_CultureHelper()
     {
         var pc = new PersianCalendar();
-        var dt = new DateTime(2009, 5, 11); //Should be Monday
+        var dt = new DateTime(2009, 5, 11); // Should be Monday
         var dow = CultureHelper.GetDayOfWeek(dt, pc);
 
         Assert.Equal(2, dow);
@@ -23,7 +24,7 @@ public class InternalTests
     public void Can_Get_IndexOfDay_For_HijriCalendar_Using_CultureHelper()
     {
         var hc = new HijriCalendar();
-        var dt = new DateTime(2009, 5, 11); //Should be Monday
+        var dt = new DateTime(2009, 5, 11); // Should be Monday
         var dow = CultureHelper.GetDayOfWeek(dt, hc);
 
         Assert.Equal(1, dow);
@@ -33,7 +34,7 @@ public class InternalTests
     public void Can_Get_IndexOfDay_For_Other_Calendars_Using_CultureHelper()
     {
         var calendar = new GregorianCalendar();
-        var dt = new DateTime(2009, 5, 11); //Should be Monday
+        var dt = new DateTime(2009, 5, 11); // Should be Monday
         var dow = CultureHelper.GetDayOfWeek(dt, calendar);
 
         Assert.Equal(1, dow);
@@ -66,13 +67,13 @@ public class InternalTests
     {
         using(new CultureSwitchContext(new PersianCultureInfo()))
         {
-            var dow = CultureHelper.GetCultureDayOfWeek(2, CultureHelper.CurrentCulture); //It is a zero based index
+            var dow = CultureHelper.GetCultureDayOfWeek(2, CultureHelper.CurrentCulture); // It is a zero based index
             Assert.Equal(DayOfWeek.Monday, dow);
         }
 
         using(new CultureSwitchContext(new CultureInfo("en-us")))
         {
-            var dow = CultureHelper.GetCultureDayOfWeek(2, CultureHelper.CurrentCulture); //It is a zero based index
+            var dow = CultureHelper.GetCultureDayOfWeek(2, CultureHelper.CurrentCulture); // It is a zero based index
             Assert.Equal(DayOfWeek.Tuesday, dow);                
         }
     }
@@ -125,7 +126,7 @@ public class InternalTests
     public void Can_Set_Field_Value()
     {
         var test = new ReflectionTestClass();
-        ReflectionHelper.SetField(test, "TestField" ,"NewValue");
+        ReflectionHelper.SetField(test, "TestField" , "NewValue");
         var value = ReflectionHelper.GetField<string>(test, "TestField");
 
         Assert.Equal("NewValue", value);
@@ -181,7 +182,7 @@ public class InternalTests
     {
         public ReflectionTestClass()
         {
-            TestField = TestProperty = "TestValue";
+            this.TestField = this.TestProperty = "TestValue";
         }
 
         private string TestField;
@@ -191,13 +192,13 @@ public class InternalTests
             get; set;
         }
 
-        public static bool StaticMethodInvoked = false;
+        public static bool StaticMethodInvoked;
 
-        public bool MethodInvoked = false;
+        public bool MethodInvoked;
 
         private void Method()
         {
-            MethodInvoked = true;
+            this.MethodInvoked = true;
         }
 
         private static void StaticMethod()

@@ -2,6 +2,8 @@ namespace FarsiLibrary.Tests.Helpers;
 
 using System;
 
+using FarsiLibrary.Core.Utils;
+
 public class TestFormatProvider : IFormatProvider
 {
     public object GetFormat(Type formatType)

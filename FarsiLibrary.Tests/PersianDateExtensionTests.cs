@@ -2,6 +2,8 @@ namespace FarsiLibrary.Tests;
 
 using System;
 
+using FarsiLibrary.Core.Utils;
+
 public class PersianDateExtensionTests
 {
     [Fact]

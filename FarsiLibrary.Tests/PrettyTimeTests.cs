@@ -3,8 +3,9 @@
 using System;
 using System.Threading;
 
+using FarsiLibrary.Core.Utils;
+using FarsiLibrary.Core.Utils.Formatter;
 using FarsiLibrary.Tests.Helpers;
-using FarsiLibrary.Utils.Formatter;
 
 using Xunit;
 

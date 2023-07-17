@@ -2,7 +2,9 @@
 
 using System;
 
-using PersianCalendar = Utils.PersianCalendar;
+using FarsiLibrary.Core.Utils;
+
+using PersianCalendar = FarsiLibrary.Core.Utils.PersianCalendar;
 
 public class DateConversionTest
 {

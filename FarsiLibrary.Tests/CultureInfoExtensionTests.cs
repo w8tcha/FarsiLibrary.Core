@@ -1,6 +1,7 @@
 ﻿namespace FarsiLibrary.Tests;
 
-using FarsiLibrary.Utils.Internals;
+using FarsiLibrary.Core.Utils;
+using FarsiLibrary.Core.Utils.Internals;
 
 public class CultureInfoExtensionTests
 {

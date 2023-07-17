@@ -2,7 +2,7 @@ namespace FarsiLibrary.Tests;
 
 using System.Collections.Generic;
 
-using FarsiLibrary.Utils.Internals;
+using FarsiLibrary.Core.Utils.Internals;
 
 public class CollectionExtensionTests
 {
@@ -24,7 +24,7 @@ public class CollectionExtensionTests
         IDictionary<object, object> dictionary = null;
         var i = 0;
 
-        var exception = Record.Exception(() => dictionary.ForEach(o => i++));
+        var exception = Record.Exception(() => dictionary.ForEach(_ => i++));
         Assert.Null(exception);
 
         Assert.Equal(0, i);

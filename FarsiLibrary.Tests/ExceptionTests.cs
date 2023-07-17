@@ -1,6 +1,6 @@
 ﻿namespace FarsiLibrary.Tests;
 
-using FarsiLibrary.Utils.Exceptions;
+using FarsiLibrary.Core.Utils.Exceptions;
 
 public class ExceptionTests
 {
