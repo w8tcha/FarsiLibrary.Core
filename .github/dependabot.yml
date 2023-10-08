@@ -1,13 +1,13 @@
 version: 2
 updates:
 - package-ecosystem: nuget
-  directory: "/FarsiLibrary.Core"
+  directory: "/FarsiLibrary.Core/"
   schedule:
     interval: daily
     time: "04:00"
   open-pull-requests-limit: 10
 - package-ecosystem: nuget
-  directory: "/FarsiLibrary.Tests"
+  directory: "/FarsiLibrary.Tests/"
   schedule:
     interval: daily
     time: "04:00"
