@@ -22,7 +22,7 @@ public static class Guard
     /// </example>
     public static void Against(bool assertion, string message)
     {
-        if (assertion == false)
+        if (!assertion)
         {
             return;
         }
@@ -47,7 +47,7 @@ public static class Guard
     /// </example>
     public static void Against<TException>(bool assertion, string message) where TException : Exception
     {
-        if (assertion == false)
+        if (!assertion)
         {
             return;
         }

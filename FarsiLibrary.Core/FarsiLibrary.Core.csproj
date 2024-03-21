@@ -30,4 +30,10 @@
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="9.22.0.87781">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 </Project>

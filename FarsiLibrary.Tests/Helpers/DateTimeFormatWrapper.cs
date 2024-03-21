@@ -1,6 +1,6 @@
 namespace FarsiLibrary.Tests.Helpers;
 
-public class DateTimeFormatWrapper
+public static class DateTimeFormatWrapper
 {
     public static DateTimeFormatInfo GetFormatInfo()
     {

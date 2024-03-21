@@ -25,12 +25,12 @@ public static class DateTimeExtensions
 
     public static PersianDate Combine(this PersianDate datePart, PersianDate timePart)
     {
-        return new(datePart.Year, datePart.Month, datePart.Day, timePart.Hour, timePart.Minute, timePart.Second, timePart.Millisecond);
+        return new PersianDate(datePart.Year, datePart.Month, datePart.Day, timePart.Hour, timePart.Minute, timePart.Second, timePart.Millisecond);
     }
 
     public static PersianDate EndOfMonth(this PersianDate dateTime)
     {
-        var dt = dateTime.ToDateTime();
+        _ = dateTime.ToDateTime();
         var start = StartOfMonth(dateTime).ToDateTime();
         var pc = CultureHelper.PersianCalendar;
         var nextMonth = pc.AddMonths(start, 1);
@@ -40,7 +40,7 @@ public static class DateTimeExtensions
 
     public static PersianDate StartOfMonth(this PersianDate dateTime)
     {
-        return new(dateTime.Year, dateTime.Month, 1);
+        return new PersianDate(dateTime.Year, dateTime.Month, 1);
     }
 
     public static PersianDate EndOfWeek(this PersianDate dateTime)

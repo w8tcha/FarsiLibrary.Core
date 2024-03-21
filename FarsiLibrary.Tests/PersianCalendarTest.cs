@@ -286,7 +286,7 @@ public class PersianCalendarTest
     public void Can_Convert_From_Gregorian_Leap_Year()
     {
         var dt = new DateTime(2008, 10, 9);
-        var _ = new DateTime(1387, 7, 18, 0, 0, 0, this.sysCalendar);
+        _ = new DateTime(1387, 7, 18, 0, 0, 0, this.sysCalendar);
         var pd = dt.ToPersianDate();
 
         Assert.Equal(DayOfWeek.Thursday, pd.DayOfWeek);

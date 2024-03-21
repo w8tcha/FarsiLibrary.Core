@@ -123,7 +123,14 @@ public sealed class PersianDate : IFormattable,
         get => this.day;
         set
         {
+
+/* Unmerged change from project 'FarsiLibrary.Core (net8.0)'
+Before:
             this.CheckDay(this.Year, this.Month, value);
+After:
+            PersianDate.CheckDay(this.Year, this.Month, value);
+*/
+            CheckDay(this.Year, this.Month, value);
             this.day = value;
         }
     }
@@ -319,7 +326,14 @@ public sealed class PersianDate : IFormattable,
     {
         CheckYear(year);
         CheckMonth(month);
+
+/* Unmerged change from project 'FarsiLibrary.Core (net8.0)'
+Before:
         this.CheckDay(year, month, day);
+After:
+        PersianDate.CheckDay(year, month, day);
+*/
+        CheckDay(year, month, day);
         CheckHour(hour);
         CheckMinute(minute);
         CheckSecond(second);
@@ -346,7 +360,14 @@ public sealed class PersianDate : IFormattable,
     {
         CheckYear(year);
         CheckMonth(month);
+
+/* Unmerged change from project 'FarsiLibrary.Core (net8.0)'
+Before:
         this.CheckDay(year, month, day);
+After:
+        PersianDate.CheckDay(year, month, day);
+*/
+        CheckDay(year, month, day);
 
         this.year = year;
         this.month = month;
@@ -378,21 +399,19 @@ public sealed class PersianDate : IFormattable,
         }
     }
 
-    private void CheckDay(int YearNo, int MonthNo, int DayNo)
+    private static void CheckDay(int YearNo, int MonthNo, int DayNo)
     {
-        if (MonthNo < 6 && DayNo > 31)
-            throw new InvalidPersianDateException(
-                FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidDay),
-                DayNo);
-
-        if (MonthNo > 6 && DayNo > 30)
-            throw new InvalidPersianDateException(
-                FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidDay),
-                DayNo);
-
-        if (MonthNo == 12 && DayNo > 29)
+        switch (MonthNo)
         {
-            if (!pc.IsLeapDay(YearNo, MonthNo, DayNo) || DayNo > 30)
+            case < 6 when DayNo > 31:
+                throw new InvalidPersianDateException(
+                    FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidDay),
+                    DayNo);
+            case > 6 when DayNo > 30:
+                throw new InvalidPersianDateException(
+                    FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidDay),
+                    DayNo);
+            case 12 when DayNo > 29 && (!pc.IsLeapDay(YearNo, MonthNo, DayNo) || DayNo > 30):
                 throw new InvalidPersianDateException(
                     FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidDay),
                     DayNo);
@@ -465,7 +484,7 @@ public sealed class PersianDate : IFormattable,
     /// Returns a pretty representation of this date instance
     /// </summary>
     /// <returns></returns>
-    public string ToPrettyDate()
+    public static string ToPrettyDate()
     {
         return null;
     }
@@ -555,7 +574,7 @@ public sealed class PersianDate : IFormattable,
         if (date1 as object == null && date2 as object == null)
             return true;
 
-        if ((object) date1 == null)
+        if (date1 is null)
             return false;
 
         if (date2 as object == null)
@@ -712,8 +731,8 @@ public sealed class PersianDate : IFormattable,
     /// <returns></returns>
     public override bool Equals(object obj)
     {
-        if (obj is PersianDate)
-            return this == (PersianDate)obj;
+        if (obj is PersianDate date)
+            return this == date;
 
         return false;
     }
@@ -765,10 +784,8 @@ public sealed class PersianDate : IFormattable,
     ///<exception cref="T:System.ArgumentException">obj is not the same type as this instance. </exception><filterpriority>2</filterpriority>
     int IComparable.CompareTo(object obj)
     {
-        if (!(obj is PersianDate))
+        if (obj is not PersianDate pd)
             throw new InvalidOperationException("Comparing value is not of type PersianDate.");
-
-        var pd = (PersianDate)obj;
 
         if (pd < this)
             return 1;
@@ -796,14 +813,11 @@ public sealed class PersianDate : IFormattable,
         if (x == null || y == null)
             throw new InvalidOperationException("Invalid PersianDate comparer.");
 
-        if (!(x is PersianDate))
+        if (x is not PersianDate pd1)
             throw new InvalidOperationException("x value is not of type PersianDate.");
 
-        if (!(y is PersianDate))
+        if (y is not PersianDate pd2)
             throw new InvalidOperationException("y value is not of type PersianDate.");
-
-        var pd1 = (PersianDate)x;
-        var pd2 = (PersianDate)y;
 
         if (pd1 > pd2)
             return 1;
@@ -907,71 +921,20 @@ public sealed class PersianDate : IFormattable,
         if (formatProvider?.GetFormat(typeof(ICustomFormatter)) is ICustomFormatter formatter)
             return formatter.Format(format, this, formatProvider);
 
-        switch (format)
+        return format switch
         {
-            case "D":
-            case "dddd, MMMM dd, yyyy":
-            case "yyyy mm dd dddd":
-                // 'yyyy mm dd dddd' e.g. 'دوشنبه 20 شهریور 1384'
-                return
-                    $"{this.LocalizedWeekDayName} {Util.toDouble(this.Day)} {this.LocalizedMonthName} {this.Year}";
-
-
-            case "f":
-                // 'hh:mm yyyy mmmm dd dddd' e.g. 'دوشنبه 20 شهریور 1384 21:30'
-                return
-                    $"{this.LocalizedWeekDayName} {Util.toDouble(this.Day)} {this.LocalizedMonthName} {this.Year} {Util.toDouble(this.Hour)}:{Util.toDouble(this.Minute)}";
-
-            case "F":
-            case "tt hh:mm:ss yyyy mmmm dd dddd":
-            case "dddd, MMMM dd, yyyy hh:mm:ss tt":
-                // 'tt hh:mm:ss yyyy mmmm dd dddd' e.g. 'دوشنبه 20 شهریور 1384 02:30:22 ب.ض'
-                return
-                    $"{this.LocalizedWeekDayName} {Util.toDouble(this.Day)} {this.LocalizedMonthName} {this.Year} {Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)} {designator}";
-
-            case "g":
-                // 'yyyy/mm/dd hh:mm tt'
-                return
-                    $"{this.Year}/{Util.toDouble(this.Month)}/{Util.toDouble(this.Day)} {Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)} {designator}";
-
-            case "G":
-                // 'yyyy/mm/dd hh:mm:ss tt'
-                return
-                    $"{this.Year}/{Util.toDouble(this.Month)}/{Util.toDouble(this.Day)} {Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)} {designator}";
-
-            case "MMMM dd":
-            case "dd MMMM":
-                // MMMM dd e.g. 'تیر 10'
-                return $"{this.LocalizedMonthName} {Util.toDouble(this.Day)}";
-
-            case "MMMM, yyyy":
-            case "M":
-            case "m":
-                // 'yyyy mmmm'
-                return $"{this.Year} {this.LocalizedMonthName}";
-
-            case "s":
-                // 'yyyy-mm-ddThh:mm:ss'
-                return
-                    $"{this.Year}-{Util.toDouble(this.Month)}-{Util.toDouble(this.Day)}T{Util.toDouble(this.Hour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)}";
-
-            case "hh:mm tt":
-            case "t":
-                // 'hh:mm tt' e.g. 12:22 ب.ض
-                return $"{Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)} {designator}";
-
-            case "T":
-            case "hh:mm:ss tt":
-                // 'hh:mm:ss tt' e.g. 12:22:30 ب.ض
-                return
-                    $"{Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)} {designator}";
-
-            case "w":
-            case "W":
-                return this.ToWritten();
-            default:
-                // ShortDatePattern yyyy/mm/dd e.g. '1384/09/01'
-                return $"{this.Year}/{Util.toDouble(this.Month)}/{Util.toDouble(this.Day)}";
-        }
+            "D" or "dddd, MMMM dd, yyyy" or "yyyy mm dd dddd" => $"{this.LocalizedWeekDayName} {Util.toDouble(this.Day)} {this.LocalizedMonthName} {this.Year}",// 'yyyy mm dd dddd' e.g. 'دوشنبه 20 شهریور 1384'
+            "f" => $"{this.LocalizedWeekDayName} {Util.toDouble(this.Day)} {this.LocalizedMonthName} {this.Year} {Util.toDouble(this.Hour)}:{Util.toDouble(this.Minute)}",// 'hh:mm yyyy mmmm dd dddd' e.g. 'دوشنبه 20 شهریور 1384 21:30'
+            "F" or "tt hh:mm:ss yyyy mmmm dd dddd" or "dddd, MMMM dd, yyyy hh:mm:ss tt" => $"{this.LocalizedWeekDayName} {Util.toDouble(this.Day)} {this.LocalizedMonthName} {this.Year} {Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)} {designator}",// 'tt hh:mm:ss yyyy mmmm dd dddd' e.g. 'دوشنبه 20 شهریور 1384 02:30:22 ب.ض'
+            "g" => $"{this.Year}/{Util.toDouble(this.Month)}/{Util.toDouble(this.Day)} {Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)} {designator}",// 'yyyy/mm/dd hh:mm tt'
+            "G" => $"{this.Year}/{Util.toDouble(this.Month)}/{Util.toDouble(this.Day)} {Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)} {designator}",// 'yyyy/mm/dd hh:mm:ss tt'
+            "MMMM dd" or "dd MMMM" => $"{this.LocalizedMonthName} {Util.toDouble(this.Day)}",// MMMM dd e.g. 'تیر 10'
+            "MMMM, yyyy" or "M" or "m" => $"{this.Year} {this.LocalizedMonthName}",// 'yyyy mmmm'
+            "s" => $"{this.Year}-{Util.toDouble(this.Month)}-{Util.toDouble(this.Day)}T{Util.toDouble(this.Hour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)}",// 'yyyy-mm-ddThh:mm:ss'
+            "hh:mm tt" or "t" => $"{Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)} {designator}",// 'hh:mm tt' e.g. 12:22 ب.ض
+            "T" or "hh:mm:ss tt" => $"{Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)} {designator}",// 'hh:mm:ss tt' e.g. 12:22:30 ب.ض
+            "w" or "W" => this.ToWritten(),
+            _ => $"{this.Year}/{Util.toDouble(this.Month)}/{Util.toDouble(this.Day)}",// ShortDatePattern yyyy/mm/dd e.g. '1384/09/01'
+        };
     }
 }
