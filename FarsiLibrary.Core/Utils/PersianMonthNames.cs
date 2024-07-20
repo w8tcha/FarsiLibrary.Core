@@ -21,9 +21,9 @@ internal class PersianMonthNames
 
     private PersianMonthNames()
     {
-        this.Months = new List<string>
-                          {
-                              this.Farvardin,
+        this.Months =
+						  [
+							  this.Farvardin,
                               this.Ordibehesht,
                               this.Khordad,
                               this.Tir,
@@ -36,7 +36,7 @@ internal class PersianMonthNames
                               this.Bahman,
                               this.Esfand,
                               string.Empty
-                          };
+                          ];
     }
 
     public static PersianMonthNames Default => instance ??= new PersianMonthNames();

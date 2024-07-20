@@ -94,12 +94,12 @@ public class PrettyTimeTests
     [InlineData(-1, "1 year ago", "en-US")]
     [InlineData(2, "2 years from now", "en-US")]
     [InlineData(50, "5 decades from now", "en-US")]
-    //[InlineData(100, "10 decades from now", "en-US")]
+    [InlineData(100, "10 decades from now", "en-US")]
     [InlineData(101, "1 century from now", "en-US")]
     [InlineData(-1, "يک سال قبل", "fa-IR")]
     [InlineData(2, "دو سال بعد", "fa-IR")]
     [InlineData(50, "پنج دهه بعد", "fa-IR")]
-    //[InlineData(100, "نه دهه بعد", "fa-IR")]
+    [InlineData(100, "نه دهه بعد", "fa-IR")]
     [InlineData(101, "يک قرن بعد", "fa-IR")]
     public void Can_Format_Years(int years, string expected, string cultureName)
     {

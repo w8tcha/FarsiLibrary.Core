@@ -24,27 +24,27 @@ internal class PersianWeekDayNames
 
     private PersianWeekDayNames()
     {
-        this.Days = new List<string>
-                        {
-                            this.Yekshanbeh,
+        this.Days =
+						[
+							this.Yekshanbeh,
                             this.Doshanbeh,
                             this.Seshanbeh,
                             this.Chaharshanbeh,
                             this.Panjshanbeh,
                             this.Jomeh,
                             this.Shanbeh,
-                        };
+                        ];
 
-        this.DaysAbbr = new List<string>
-                            {
-                                this.Ye,
+        this.DaysAbbr =
+							[
+								this.Ye,
                                 this.Do,
                                 this.Se,
                                 this.Ch,
                                 this.Pa,
                                 this.Jo,
                                 this.Sh,
-                            };
+                            ];
     }
 
     public static PersianWeekDayNames Default => instance ??= new PersianWeekDayNames();

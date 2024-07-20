@@ -23,9 +23,9 @@ public class PrettyTime
 
     private void InitTimeUnits()
     {
-        this.timeUnits = new List<ITimeUnit>
-                             {
-                                 new JustNow(),
+        this.timeUnits =
+							 [
+								 new JustNow(),
                                  new Millisecond(),
                                  new Second(),
                                  new Minute(),
@@ -37,7 +37,7 @@ public class PrettyTime
                                  new Decade(),
                                  new Century(),
                                  new Millennium()
-                             };
+                             ];
     }
 
     public Duration ApproximateDuration(DateTime then)
@@ -71,7 +71,7 @@ public class PrettyTime
 
             result.Unit = unit;
             result.Quantity = difference / millisPerUnit;
-            result.Delta = difference - result.Quantity * millisPerUnit;
+            result.Delta = difference - result.Quantity * millisPerUnit * 10;
             break;
         }
 

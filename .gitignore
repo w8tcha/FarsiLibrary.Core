@@ -17,3 +17,4 @@ publish
 **/packages/*
 !**/packages/repositories.config
 FarsiLibrary.sln.DotSettings.user
+secret.json

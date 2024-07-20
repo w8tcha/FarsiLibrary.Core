@@ -18,8 +18,8 @@ internal static class CultureHelper
     private static readonly PersianCalendar pc = new();
     private static readonly HijriCalendar hc = new();
     private static readonly GregorianCalendar gc = new();
-    private static readonly Dictionary<int, DayOfWeek> PersianDoW = new();
-    private static readonly Dictionary<int, DayOfWeek> GregorianDoW = new();
+    private static readonly Dictionary<int, DayOfWeek> PersianDoW = [];
+    private static readonly Dictionary<int, DayOfWeek> GregorianDoW = [];
 
     static CultureHelper()
     {
