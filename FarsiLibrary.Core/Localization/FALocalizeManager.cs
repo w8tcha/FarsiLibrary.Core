@@ -48,17 +48,17 @@ public class FALocalizeManager
         {
             return this.customLocalizer;
         }
-            
+
         if (ci.Equals(this.FarsiCulture))
         {
             return this.fa;
         }
-            
+
         if (ci.Equals(this.ArabicCulture))
         {
             return this.ar;
         }
-            
+
         return this.en;
     }
 
@@ -109,7 +109,9 @@ public class FALocalizeManager
         set
         {
             if(this.customLocalizer == value)
+            {
                 return;
+            }
 
             this.customLocalizer = value;
             this.OnLocalizerChanged(EventArgs.Empty);

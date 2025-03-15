@@ -12,22 +12,12 @@ public class BasicTimeFormat : ITimeFormat
     public static string Quantity = "%n";
     public static string Unit = "%u";
 
-    public double RoundingTolerance { get;set; }
-    public string Pattern { get;set; }
-    public string FuturePrefix { get; set; }
-    public string FutureSuffix { get;set; }
-    public string PastPrefix { get; set; }
-    public string PastSuffix { get; set; }
-
-    public BasicTimeFormat()
-    {
-        this.RoundingTolerance = 0;
-        this.Pattern = string.Empty;
-        this.FuturePrefix = string.Empty;
-        this.FutureSuffix = string.Empty;
-        this.PastPrefix = string.Empty;
-        this.PastSuffix = string.Empty;
-    }
+    public double RoundingTolerance { get;set; } = 0;
+    public string Pattern { get;set; } = string.Empty;
+    public string FuturePrefix { get; set; } = string.Empty;
+    public string FutureSuffix { get;set; } = string.Empty;
+    public string PastPrefix { get; set; } = string.Empty;
+    public string PastSuffix { get; set; } = string.Empty;
 
     public string Format(Duration duration)
     {

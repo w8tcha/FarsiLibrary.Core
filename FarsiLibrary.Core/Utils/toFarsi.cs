@@ -19,7 +19,9 @@ public sealed class toFarsi
     public static string Convert(string num, CultureInfo culture)
     {
         if(string.IsNullOrEmpty(num))
+        {
             return num;
+        }
 
         var numEnglish = num.Select((t, i) => num.Substring(i, 1))
             .Aggregate(

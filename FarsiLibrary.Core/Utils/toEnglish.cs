@@ -16,7 +16,9 @@ public sealed class toEnglish
     public static string Convert(string num)
     {
         if (string.IsNullOrEmpty(num))
+        {
             return num;
+        }
 
         var result = num.Select((t, i) => num.Substring(i, 1))
             .Aggregate(

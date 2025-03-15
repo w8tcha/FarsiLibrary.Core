@@ -23,7 +23,9 @@ public class TestFormatProvider : IFormatProvider
             }
 
             if (format == "CustomYearMonth")
+            {
                 return pd.Year + " -- " + pd.Month;
+            }
 
             return pd.ToString(format);
         }

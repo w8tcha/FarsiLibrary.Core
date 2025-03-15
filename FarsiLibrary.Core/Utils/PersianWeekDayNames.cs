@@ -32,7 +32,7 @@ internal class PersianWeekDayNames
                             this.Chaharshanbeh,
                             this.Panjshanbeh,
                             this.Jomeh,
-                            this.Shanbeh,
+                            this.Shanbeh
                         ];
 
         this.DaysAbbr =
@@ -43,7 +43,7 @@ internal class PersianWeekDayNames
                                 this.Ch,
                                 this.Pa,
                                 this.Jo,
-                                this.Sh,
+                                this.Sh
                             ];
     }
 

@@ -16,8 +16,8 @@ public sealed class PersianDateConverter
     private const int GYearOff = 226894;
     private static readonly int[,] GDayTable = new[,] { { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }, { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 } };
     private static readonly int[,] JDayTable = new[,] { { 31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29 }, { 31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30 } };
-    private static readonly string[] weekdays = new[] { "شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنجشنبه", "جمعه" };
-    private static readonly string[] weekdaysabbr = new[] { "ش", "ی", "د", "س", "چ", "پ", "ج" };
+    private static readonly string[] weekdays = ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنجشنبه", "جمعه"];
+    private static readonly string[] weekdaysabbr = ["ش", "ی", "د", "س", "چ", "پ", "ج"];
 
     /// <summary>
     /// Checks if a specified Persian year is a leap one.
@@ -71,7 +71,7 @@ public sealed class PersianDateConverter
 
         for (var i = 0; i < gMonth - 1; i++)
         {
-            gDay = gDay + GDayTable[leap, i];
+            gDay += GDayTable[leap, i];
         }
 
         return (gYear - 1) * 365 + gDay + Div4 - Div100 + Div400;
@@ -86,25 +86,30 @@ public sealed class PersianDateConverter
 
         if (cycle > 0)
         {
-            for (i = 1; i <= 18; i = i + 4)
+            for (i = 1; i <= 18; i += 4)
             {
                 if (i > cycle)
+                {
                     break;
+                }
 
                 leap++;
             }
         }
 
-        if (cycle > 21)
+        if (cycle <= 21)
         {
-            for (i = 22; i <= 31; i = i + 4)
-            {
-                if (i > cycle)
-                    break;
+            return leap;
+        }
 
-                leap++;
+        for (i = 22; i <= 31; i += 4)
+        {
+            if (i > cycle)
+            {
+                break;
             }
 
+            leap++;
         }
 
         return leap;
@@ -116,7 +121,7 @@ public sealed class PersianDateConverter
         var leap = JLeap(jYear);
         for (var i = 0; i < jMonth - 1; i++)
         {
-            jDay = jDay + JDayTable[leap, i];
+            jDay += JDayTable[leap, i];
         }
 
         leap = JLeapYears(jYear - 1);
@@ -163,7 +168,7 @@ public sealed class PersianDateConverter
 
         // Calculate total days from the base of gregorian calendar
         var iTotalDays = GregDays(gyear, gmonth, gday);
-        iTotalDays = iTotalDays - GYearOff;
+        iTotalDays -= GYearOff;
 
         // Calculate total jalali years passed
         var jyear = (int)(iTotalDays / (Solar - 0.25 / 33));
@@ -200,7 +205,7 @@ public sealed class PersianDateConverter
                 break;
             }
 
-            jday = jday - JDayTable[leap, i];
+            jday -= JDayTable[leap, i];
         }
 
         var iJMonth = i + 1;
@@ -239,14 +244,14 @@ public sealed class PersianDateConverter
         int i;
 
         var totalDays = JalaliDays(jyear, jmonth, jday);
-        totalDays = totalDays + GYearOff;
+        totalDays += GYearOff;
 
         var gyear = (int)(totalDays / (Solar - 0.25 / 33));
         var Div4 = gyear / 4;
         var Div100 = gyear / 100;
         var Div400 = gyear / 400;
         var gdays = totalDays - 365 * gyear - (Div4 - Div100 + Div400);
-        gyear = gyear + 1;
+        gyear += 1;
 
         if (gdays == 0)
         {
@@ -270,7 +275,7 @@ public sealed class PersianDateConverter
                 break;
             }
 
-            gdays = gdays - GDayTable[leap, i];
+            gdays -= GDayTable[leap, i];
         }
 
         var iGMonth = i + 1;

@@ -57,7 +57,7 @@ public static class DateTimeExtensions
         var dt = dateTime.ToDateTime();
         var diff = GetStartOfWeekDiff(dt);
         var pc = CultureHelper.PersianCalendar;
-            
+
         return pc.AddDays(dt, -diff);
     }
 

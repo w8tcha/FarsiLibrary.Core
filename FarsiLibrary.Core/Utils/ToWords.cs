@@ -200,7 +200,7 @@ public static class ToWords
                 return result;
             }
 
-            result += " و "; 
+            result += " و ";
         }
 
         if (x >= 0)

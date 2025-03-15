@@ -9,7 +9,5 @@ public class InvalidPersianDateFormatException : Exception
     {
     }
 
-    public InvalidPersianDateFormatException() : base(string.Empty)
-    { 
-    }
+    public InvalidPersianDateFormatException() : base(string.Empty) { }
 }

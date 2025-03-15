@@ -123,13 +123,6 @@ public sealed class PersianDate : IFormattable,
         get => this.day;
         set
         {
-
-/* Unmerged change from project 'FarsiLibrary.Core (net8.0)'
-Before:
-            this.CheckDay(this.Year, this.Month, value);
-After:
-            PersianDate.CheckDay(this.Year, this.Month, value);
-*/
             CheckDay(this.Year, this.Month, value);
             this.day = value;
         }
@@ -530,7 +523,9 @@ After:
 
                 // Fixed: If year is 2 digit, it is probably 13xx.
                 if (year < 100)
+                {
                     year = 1300 + year;
+                }
 
                 return new PersianDate(year, month, day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond);
             }
@@ -571,14 +566,20 @@ After:
     /// <returns></returns>
     public static bool operator ==(PersianDate date1, PersianDate date2)
     {
-        if (date1 as object == null && date2 as object == null)
+        if (date1 as object is null && date2 as object is null)
+        {
             return true;
+        }
 
         if (date1 is null)
+        {
             return false;
+        }
 
-        if (date2 as object == null)
+        if (date2 as object is null)
+        {
             return false;
+        }
 
         return date1.Year == date2.Year && date1.Month == date2.Month && date1.Day == date2.Day &&
                date1.Hour == date2.Hour && date1.Minute == date2.Minute && date1.Second == date2.Second &&
@@ -593,14 +594,20 @@ After:
     /// <returns></returns>
     public static bool operator !=(PersianDate date1, PersianDate date2)
     {
-        if (date1 as object == null && date2 as object == null)
+        if (date1 as object is null && date2 as object is null)
+        {
             return false;
+        }
 
-        if (date1 as object == null)
+        if (date1 as object is null)
+        {
             return true;
+        }
 
-        if (date2 as object == null)
+        if (date2 as object is null)
+        {
             return true;
+        }
 
         return date1.Year != date2.Year || date1.Month != date2.Month || date1.Day != date2.Day ||
                date1.Hour != date2.Hour || date1.Minute != date2.Minute || date1.Second != date2.Second ||
@@ -615,35 +622,53 @@ After:
     /// <returns></returns>
     public static bool operator >(PersianDate date1, PersianDate date2)
     {
-        if (date1 as object == null && date2 as object == null)
+        if (date1 as object is null && date2 as object is null)
+        {
             return false;
+        }
 
-        if (date1 as object == null && date2 as object != null)
+        if (date1 as object is null && date2 as object is not null)
+        {
             throw new InvalidOperationException("date can not be null.");
+        }
 
-        if (date2 as object == null && date1 as object != null)
+        if (date2 as object is null && date1 as object is not null)
+        {
             throw new InvalidOperationException("date can not be null.");
+        }
 
         if (date1.Year > date2.Year)
+        {
             return true;
+        }
 
         if (date1.Year == date2.Year && date1.Month > date2.Month)
+        {
             return true;
+        }
 
         if (date1.Year == date2.Year && date1.Month == date2.Month && date1.Day > date2.Day)
+        {
             return true;
+        }
 
         if (date1.Year == date2.Year && date1.Month == date2.Month && date1.Day == date2.Day &&
             date1.Hour > date2.Hour)
+        {
             return true;
+        }
 
         if (date1.Year == date2.Year && date1.Month == date2.Month && date1.Day == date2.Day &&
             date1.Hour == date2.Hour && date1.Minute > date2.Minute)
+        {
             return true;
+        }
 
         if (date1.Year == date2.Year && date1.Month == date2.Month && date1.Day == date2.Day &&
             date1.Hour == date2.Hour && date1.Minute == date2.Minute && date1.Second > date2.Second)
+        {
             return true;
+        }
 
         return date1.Year == date2.Year && date1.Month == date2.Month && date1.Day == date2.Day &&
                date1.Hour == date2.Hour && date1.Minute == date2.Minute && date1.Second == date2.Second &&
@@ -659,34 +684,52 @@ After:
     public static bool operator <(PersianDate date1, PersianDate date2)
     {
         if (date1 as object == null && date2 as object == null)
+        {
             return false;
+        }
 
         if (date1 as object == null && date2 as object != null)
+        {
             throw new InvalidOperationException("date can not be null.");
+        }
 
         if (date2 as object == null && date1 as object != null)
+        {
             throw new InvalidOperationException("date can not be null.");
+        }
 
         if (date1.Year < date2.Year)
+        {
             return true;
+        }
 
         if (date1.Year == date2.Year && date1.Month < date2.Month)
+        {
             return true;
+        }
 
         if (date1.Year == date2.Year && date1.Month == date2.Month && date1.Day < date2.Day)
+        {
             return true;
+        }
 
         if (date1.Year == date2.Year && date1.Month == date2.Month && date1.Day == date2.Day &&
             date1.Hour < date2.Hour)
+        {
             return true;
+        }
 
         if (date1.Year == date2.Year && date1.Month == date2.Month && date1.Day == date2.Day &&
             date1.Hour == date2.Hour && date1.Minute < date2.Minute)
+        {
             return true;
+        }
 
         if (date1.Year == date2.Year && date1.Month == date2.Month && date1.Day == date2.Day &&
             date1.Hour == date2.Hour && date1.Minute == date2.Minute && date1.Second < date2.Second)
+        {
             return true;
+        }
 
         return date1.Year == date2.Year && date1.Month == date2.Month && date1.Day == date2.Day &&
                date1.Hour == date2.Hour && date1.Minute == date2.Minute && date1.Second == date2.Second &&
@@ -732,7 +775,9 @@ After:
     public override bool Equals(object obj)
     {
         if (obj is PersianDate date)
+        {
             return this == date;
+        }
 
         return false;
     }
@@ -757,7 +802,9 @@ After:
     public static implicit operator PersianDate(DateTime dt)
     {
         if (dt > pc.MaxSupportedDateTime || dt < pc.MinSupportedDateTime)
+        {
             return null;
+        }
 
         return PersianDateConverter.ToPersianDate(dt);
     }
@@ -785,13 +832,19 @@ After:
     int IComparable.CompareTo(object obj)
     {
         if (obj is not PersianDate pd)
+        {
             throw new InvalidOperationException("Comparing value is not of type PersianDate.");
+        }
 
         if (pd < this)
+        {
             return 1;
+        }
 
         if (pd > this)
+        {
             return -1;
+        }
 
         return 0;
     }
@@ -811,19 +864,29 @@ After:
     int IComparer.Compare(object x, object y)
     {
         if (x == null || y == null)
+        {
             throw new InvalidOperationException("Invalid PersianDate comparer.");
+        }
 
         if (x is not PersianDate pd1)
+        {
             throw new InvalidOperationException("x value is not of type PersianDate.");
+        }
 
         if (y is not PersianDate pd2)
+        {
             throw new InvalidOperationException("y value is not of type PersianDate.");
+        }
 
         if (pd1 > pd2)
+        {
             return 1;
+        }
 
         if (pd1 < pd2)
+        {
             return -1;
+        }
 
         return 0;
     }
@@ -840,10 +903,14 @@ After:
     public int CompareTo(PersianDate other)
     {
         if (other < this)
+        {
             return 1;
+        }
 
         if (other > this)
+        {
             return -1;
+        }
 
         return 0;
     }
@@ -861,10 +928,14 @@ After:
     public int Compare(PersianDate x, PersianDate y)
     {
         if (x > y)
+        {
             return 1;
+        }
 
         if (x < y)
+        {
             return -1;
+        }
 
         return 0;
     }
@@ -919,7 +990,9 @@ After:
                              : PersianDateTimeFormatInfo.AMDesignator;
 
         if (formatProvider?.GetFormat(typeof(ICustomFormatter)) is ICustomFormatter formatter)
+        {
             return formatter.Format(format, this, formatProvider);
+        }
 
         return format switch
         {
@@ -934,7 +1007,7 @@ After:
             "hh:mm tt" or "t" => $"{Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)} {designator}",// 'hh:mm tt' e.g. 12:22 ب.ض
             "T" or "hh:mm:ss tt" => $"{Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)} {designator}",// 'hh:mm:ss tt' e.g. 12:22:30 ب.ض
             "w" or "W" => this.ToWritten(),
-            _ => $"{this.Year}/{Util.toDouble(this.Month)}/{Util.toDouble(this.Day)}",// ShortDatePattern yyyy/mm/dd e.g. '1384/09/01'
+            _ => $"{this.Year}/{Util.toDouble(this.Month)}/{Util.toDouble(this.Day)}"// ShortDatePattern yyyy/mm/dd e.g. '1384/09/01'
         };
     }
 }

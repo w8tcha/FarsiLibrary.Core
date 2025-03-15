@@ -26,7 +26,9 @@ internal static class ReflectionHelper
     public static void SetField(object owner, string fieldName, object value)
     {
         if (owner == null)
+        {
             throw new ArgumentNullException(nameof(owner), "owner should point to a object. works on instance fields only");
+        }
 
         var type = owner.GetType();
         var fieldinfo = GetField(type, fieldName) ?? throw new ArgumentNullException(fieldName, "fieldName can not be found on the type");
@@ -53,7 +55,9 @@ internal static class ReflectionHelper
     public static object GetField(object owner, string fieldName)
     {
         if (owner == null)
+        {
             throw new ArgumentNullException(nameof(owner), "owner should point to a object. works on instance fields only");
+        }
 
         var type = owner.GetType();
         var fieldinfo = GetField(type, fieldName);

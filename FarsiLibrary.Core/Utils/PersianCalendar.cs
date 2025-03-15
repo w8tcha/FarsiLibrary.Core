@@ -60,7 +60,10 @@ public sealed class PersianCalendar : Calendar
         if (day > 29)
         {
             var maxday = GetDaysInMonth(false, year, month, 0);
-            if (maxday < day) day = maxday;
+            if (maxday < day)
+            {
+                day = maxday;
+            }
         }
 
         DateTime dateTime;
@@ -115,7 +118,9 @@ public sealed class PersianCalendar : Calendar
         if (day == 30 && month == 12)
         {
             if (!IsLeapYear(false, year, 0))
+            {
                 day = 29;
+            }
         }
             
         try
@@ -458,13 +463,17 @@ public sealed class PersianCalendar : Calendar
             }
         }
 
-        if (year > 99) 
+        if (year > 99)
+        {
             return year;
-            
+        }
+
         var a = this.TwoDigitYearMax / 100;
             
         if (year > this.TwoDigitYearMax - a * 100)
+        {
             a--;
+        }
 
         return a * 100 + year;
     }
@@ -473,10 +482,7 @@ public sealed class PersianCalendar : Calendar
     /// Gets the list of eras in the PersianCalendar.
     /// </summary>
     /// <remarks>The Persian calendar recognizes one era: A.P. (Latin "Anno Persarum", which means "the year of/for Persians").</remarks>
-    public override int[] Eras
-    {
-        get { return new[] { PersianEra }; }
-    }
+    public override int[] Eras => [PersianEra];
 
     /// <summary>
     /// Gets and sets the last year of a 100-year range that can be represented by a 2-digit year.
@@ -489,7 +495,9 @@ public sealed class PersianCalendar : Calendar
         set
         {
             if (value is < 100 or > 9378)
+            {
                 throw new InvalidOperationException("value should be between 100 and 9378");
+            }
 
             this.twoDigitYearMax = value;
         }

@@ -44,7 +44,6 @@ public enum StringID
     Validation_NotValid,
     Validation_Required,
     Validation_NullText,
-        
     MessageBox_Ok,
     MessageBox_Cancel,
     MessageBox_Yes,
@@ -55,5 +54,5 @@ public enum StringID
 
     Hour,
     Minute,
-    Second,
+    Second
 }

@@ -85,5 +85,5 @@ public enum FormatterStringID
     YearPastPrefix,
     YearPastSuffix,
     YearName,
-    YearPluralName,
+    YearPluralName
 }

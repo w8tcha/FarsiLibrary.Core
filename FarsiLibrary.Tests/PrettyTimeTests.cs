@@ -150,7 +150,7 @@ public class PrettyTimeTests
     public void Can_Convert_Dates_Using_ExtensionMethod()
     {
         var date = DateTime.Now;
-            
+
         Thread.Sleep(1000); //to simulate delay
 
         var pretty = date.ToPrettyTime();

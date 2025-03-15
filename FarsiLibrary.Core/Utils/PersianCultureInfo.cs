@@ -92,11 +92,8 @@ public class PersianCultureInfo : CultureInfo
     /// <returns>
     /// An array of type <see cref="T:System.Globalization.Calendar"/> that represents the calendars that can be used by the culture represented by the current <see cref="T:System.Globalization.CultureInfo"/>.
     /// </returns>
-    public override Calendar[] OptionalCalendars
-    {
-        get { return new Calendar[] { this.systemCalendar, this.calendar }; }
-    }
-        
+    public override Calendar[] OptionalCalendars => [this.systemCalendar, this.calendar];
+
 
     /// <summary>
     /// Creates a copy of the current <see cref="T:System.Globalization.CultureInfo"/>.
@@ -109,7 +106,7 @@ public class PersianCultureInfo : CultureInfo
         return new PersianCultureInfo();
     }
 
-    public static new bool IsReadOnly => true;
+    public new static bool IsReadOnly => true;
 
     public override bool IsNeutralCulture => false;
 
