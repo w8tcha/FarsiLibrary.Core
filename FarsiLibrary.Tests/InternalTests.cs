@@ -1,5 +1,3 @@
-using PersianCalendar=FarsiLibrary.Core.Utils.PersianCalendar;
-
 namespace FarsiLibrary.Tests;
 
 using System;

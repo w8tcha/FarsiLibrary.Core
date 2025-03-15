@@ -683,17 +683,17 @@ After:
     /// <returns></returns>
     public static bool operator <(PersianDate date1, PersianDate date2)
     {
-        if (date1 as object == null && date2 as object == null)
+        if (date1 as object is null && date2 as object is null)
         {
             return false;
         }
 
-        if (date1 as object == null && date2 as object != null)
+        if (date1 as object is null && date2 as object is not null)
         {
             throw new InvalidOperationException("date can not be null.");
         }
 
-        if (date2 as object == null && date1 as object != null)
+        if (date2 as object is null && date1 as object is not null)
         {
             throw new InvalidOperationException("date can not be null.");
         }

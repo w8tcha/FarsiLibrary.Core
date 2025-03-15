@@ -19,7 +19,6 @@ public class PersianCultureInfo : CultureInfo
         public static string IsReadonly => "m_isReadOnly";
     }
 
-    //private static CultureFieldNames FieldNames;
     private readonly PersianCalendar calendar;
     private readonly System.Globalization.PersianCalendar systemCalendar;
     private DateTimeFormatInfo format;

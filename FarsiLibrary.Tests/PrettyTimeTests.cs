@@ -15,7 +15,7 @@ public class PrettyTimeTests
     [InlineData(-5, "4 days ago", "en-US") ]
     [InlineData(5, "5 days from now", "en-US")]
     [InlineData(5, "پنج روز بعد", "fa-IR")]
-    [InlineData(-5, "چهار روز قبل", "fa-IR")] 
+    [InlineData(-5, "چهار روز قبل", "fa-IR")]
     public void Can_Format_Days(int days, string expected, string cultureName)
     {
         using (new CultureSwitchContext(new CultureInfo(cultureName)))
@@ -99,7 +99,7 @@ public class PrettyTimeTests
     [InlineData(-1, "يک سال قبل", "fa-IR")]
     [InlineData(2, "دو سال بعد", "fa-IR")]
     [InlineData(50, "پنج دهه بعد", "fa-IR")]
-    [InlineData(100, "نه دهه بعد", "fa-IR")]
+    [InlineData(100, "ده دهه بعد", "fa-IR")]
     [InlineData(101, "يک قرن بعد", "fa-IR")]
     public void Can_Format_Years(int years, string expected, string cultureName)
     {

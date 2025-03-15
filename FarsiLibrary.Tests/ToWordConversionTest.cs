@@ -9,9 +9,9 @@ public class ToWordConversionTest
     [Fact]
     public void Should_Convert_Maximum_Integer_Values()
     {
-        ToWords.ToString(Int32.MaxValue);
+        ToWords.ToString(int.MaxValue);
     }
-        
+
     [Fact]
     public void Should_Convert_Big_Integer_Values()
     {
@@ -37,7 +37,7 @@ public class ToWordConversionTest
         var s = ToWords.ToString(8);
         Assert.NotNull(s);
     }
-    
+
     [Theory]
     [InlineData("سی و يک", 31)]
     [InlineData("چهل و دو", 42)]

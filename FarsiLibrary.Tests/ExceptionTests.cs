@@ -8,7 +8,7 @@ public class ExceptionTests
     public void Can_Create_InvalidPersianDate_Exception()
     {
         var ex = new InvalidPersianDateException();
-            
+
         Assert.Null(ex.InvalidValue);
         Assert.Empty(ex.Message);
     }

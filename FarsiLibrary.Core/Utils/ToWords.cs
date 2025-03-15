@@ -74,8 +74,6 @@ public static class ToWords
         var result = string.Empty;
         int t;
 
-        //System.Diagnostics.Debug.Assert(x < 999);
-
         if (x > 99)
         {
             t = x / 100;

@@ -115,12 +115,9 @@ public sealed class PersianCalendar : Calendar
         var day = GetDayOfMonth(false, time);
         year += years;
             
-        if (day == 30 && month == 12)
+        if (day == 30 && month == 12 && !IsLeapYear(false, year, 0))
         {
-            if (!IsLeapYear(false, year, 0))
-            {
-                day = 29;
-            }
+            day = 29;
         }
             
         try
@@ -556,23 +553,17 @@ public sealed class PersianCalendar : Calendar
 
     private static void CheckYearRange(bool validate, int year)
     {
-        if (validate)
+        if (validate && year is < 1 or > 9378)
         {
-            if (year is < 1 or > 9378)
-            {
-                throw new InvalidPersianDateException(FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidYear));
-            }
+            throw new InvalidPersianDateException(FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidYear));
         }
     }
 
     private static void CheckMonthRange(bool validate, int month)
     {
-        if (validate)
+        if (validate && month is < 1 or > 12)
         {
-            if (month is < 1 or > 12)
-            {
-                throw new InvalidPersianDateException(FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidMonth));
-            }
+            throw new InvalidPersianDateException(FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidMonth));
         }
     }
 

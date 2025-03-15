@@ -1,6 +1,4 @@
-﻿using PersianCalendar=FarsiLibrary.Core.Utils.PersianCalendar;
-
-namespace FarsiLibrary.Tests;
+﻿namespace FarsiLibrary.Tests;
 
 using System;
 using System.Linq;
