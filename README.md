@@ -5,7 +5,7 @@
 
 [![NuGet](https://img.shields.io/nuget/v/FarsiLibrary.Core.svg)](https://nuget.org/packages/FarsiLibrary.Core)
 
-This is a library of date functions for .NET Core 7.0/8.0.
+This is a library of date functions for .NET 8/9.
 
 This is a Forked Version of the orignal Project for .NET Framework 4.8 by @HEskandari
 
