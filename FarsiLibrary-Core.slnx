@@ -1,0 +1,13 @@
+<Solution>
+  <Configurations>
+    <Platform Name=".NET" />
+    <Platform Name="Any CPU" />
+    <Platform Name="Mixed Platforms" />
+  </Configurations>
+  <Folder Name="/Core/">
+    <Project Path="FarsiLibrary.Core/FarsiLibrary.Core.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="FarsiLibrary.Tests/FarsiLibrary.Tests.csproj" />
+  </Folder>
+</Solution>
