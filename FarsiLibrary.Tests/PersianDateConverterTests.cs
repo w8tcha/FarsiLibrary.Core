@@ -88,9 +88,12 @@ public class PersianDateConverterTests
         var dt = new DateTime(2009, 3, 20); //Converts to a leap year in Persian Date (30th Esfand 1387)
         var pd = PersianDateConverter.ToPersianDate(dt);
 
-        Assert.Equal(12, pd.Month);
-        Assert.Equal(30, pd.Day);
-        Assert.Equal(30, pd.MonthDays);
+        PersianCalendar pc = new PersianCalendar();
+
+
+        Assert.Equal(12, pc.GetMonth(dt));
+        Assert.Equal(30, pc.GetDayOfMonth(dt));
+        Assert.Equal(30, pc.GetDaysInMonth(dt.Year, dt.Month));
     }
 
     [Fact]
