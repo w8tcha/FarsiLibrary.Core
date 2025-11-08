@@ -50,7 +50,7 @@ public class InternalTests
         using(new CultureSwitchContext(new CultureInfo("ar-sa")))
         {
             var calendar = CultureHelper.CurrentCalendar;
-            Assert.IsType<HijriCalendar>(calendar);                
+            Assert.IsType<HijriCalendar>(calendar);
         }
 
         using (new CultureSwitchContext(new CultureInfo("en-us")))
@@ -72,7 +72,7 @@ public class InternalTests
         using(new CultureSwitchContext(new CultureInfo("en-us")))
         {
             var dow = CultureHelper.GetCultureDayOfWeek(2, CultureHelper.CurrentCulture); // It is a zero based index
-            Assert.Equal(DayOfWeek.Tuesday, dow);                
+            Assert.Equal(DayOfWeek.Tuesday, dow);
         }
     }
 

@@ -73,6 +73,8 @@ public sealed class PersianDate : IFormattable,
 
     /// <summary>
     /// Current date/time in PersianDate format.
+    /// To Set format like : HH:mm yyyy/mm/dd e.g. '13:36 1403/04/26'
+    /// PersianDate.Now.ToString("HH:mm yyyy/mm/dd");
     /// </summary>
     [Description("Current date/time in PersianDate format")]
     public static PersianDate Now => PersianDateConverter.ToPersianDate(DateTime.Now);
@@ -996,18 +998,42 @@ After:
 
         return format switch
         {
-            "D" or "dddd, MMMM dd, yyyy" or "yyyy mm dd dddd" => $"{this.LocalizedWeekDayName} {Util.toDouble(this.Day)} {this.LocalizedMonthName} {this.Year}",// 'yyyy mm dd dddd' e.g. 'دوشنبه 20 شهریور 1384'
-            "f" => $"{this.LocalizedWeekDayName} {Util.toDouble(this.Day)} {this.LocalizedMonthName} {this.Year} {Util.toDouble(this.Hour)}:{Util.toDouble(this.Minute)}",// 'hh:mm yyyy mmmm dd dddd' e.g. 'دوشنبه 20 شهریور 1384 21:30'
-            "F" or "tt hh:mm:ss yyyy mmmm dd dddd" or "dddd, MMMM dd, yyyy hh:mm:ss tt" => $"{this.LocalizedWeekDayName} {Util.toDouble(this.Day)} {this.LocalizedMonthName} {this.Year} {Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)} {designator}",// 'tt hh:mm:ss yyyy mmmm dd dddd' e.g. 'دوشنبه 20 شهریور 1384 02:30:22 ب.ض'
-            "g" => $"{this.Year}/{Util.toDouble(this.Month)}/{Util.toDouble(this.Day)} {Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)} {designator}",// 'yyyy/mm/dd hh:mm tt'
-            "G" => $"{this.Year}/{Util.toDouble(this.Month)}/{Util.toDouble(this.Day)} {Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)} {designator}",// 'yyyy/mm/dd hh:mm:ss tt'
-            "MMMM dd" or "dd MMMM" => $"{this.LocalizedMonthName} {Util.toDouble(this.Day)}",// MMMM dd e.g. 'تیر 10'
-            "MMMM, yyyy" or "M" or "m" => $"{this.Year} {this.LocalizedMonthName}",// 'yyyy mmmm'
-            "s" => $"{this.Year}-{Util.toDouble(this.Month)}-{Util.toDouble(this.Day)}T{Util.toDouble(this.Hour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)}",// 'yyyy-mm-ddThh:mm:ss'
-            "hh:mm tt" or "t" => $"{Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)} {designator}",// 'hh:mm tt' e.g. 12:22 ب.ض
-            "T" or "hh:mm:ss tt" => $"{Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)} {designator}",// 'hh:mm:ss tt' e.g. 12:22:30 ب.ض
+            "D" or "dddd, MMMM dd, yyyy" or "yyyy mm dd dddd" =>
+                $"{this.LocalizedWeekDayName} {Util.toDouble(this.Day)} {this.LocalizedMonthName} {this.Year}" // 'yyyy mm dd dddd' e.g. 'دوشنبه 20 شهریور 1384'
+            ,
+            "yyyy/mm/dd HH:mm" =>
+                //ShortDatePattern yyyy/mm/dd HH:mm e.g. '1403/04/26 13:36'
+                $"{Year}/{Util.toDouble(Month)}/{Util.toDouble(Day)} {Util.toDouble(Hour)}:{Util.toDouble(Minute)}",
+            "HH:mm yyyy/mm/dd" =>
+                //ShortDatePattern HH:mm yyyy/mm/dd e.g. '13:36 1403/04/26'
+                $"{Util.toDouble(Hour)}:{Util.toDouble(Minute)} {Year}/{Util.toDouble(Month)}/{Util.toDouble(Day)}",
+            "f" =>
+                $"{this.LocalizedWeekDayName} {Util.toDouble(this.Day)} {this.LocalizedMonthName} {this.Year} {Util.toDouble(this.Hour)}:{Util.toDouble(this.Minute)}" // 'hh:mm yyyy mmmm dd dddd' e.g. 'دوشنبه 20 شهریور 1384 21:30'
+            ,
+            "F" or "tt hh:mm:ss yyyy mmmm dd dddd" or "dddd, MMMM dd, yyyy hh:mm:ss tt" =>
+                $"{this.LocalizedWeekDayName} {Util.toDouble(this.Day)} {this.LocalizedMonthName} {this.Year} {Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)} {designator}" // 'tt hh:mm:ss yyyy mmmm dd dddd' e.g. 'دوشنبه 20 شهریور 1384 02:30:22 ب.ض'
+            ,
+            "g" =>
+                $"{this.Year}/{Util.toDouble(this.Month)}/{Util.toDouble(this.Day)} {Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)} {designator}" // 'yyyy/mm/dd hh:mm tt'
+            ,
+            "G" =>
+                $"{this.Year}/{Util.toDouble(this.Month)}/{Util.toDouble(this.Day)} {Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)} {designator}" // 'yyyy/mm/dd hh:mm:ss tt'
+            ,
+            "MMMM dd" or "dd MMMM" => $"{this.LocalizedMonthName} {Util.toDouble(this.Day)}" // MMMM dd e.g. 'تیر 10'
+            ,
+            "MMMM, yyyy" or "M" or "m" => $"{this.Year} {this.LocalizedMonthName}" // 'yyyy mmmm'
+            ,
+            "s" =>
+                $"{this.Year}-{Util.toDouble(this.Month)}-{Util.toDouble(this.Day)}T{Util.toDouble(this.Hour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)}" // 'yyyy-mm-ddThh:mm:ss'
+            ,
+            "hh:mm tt" or "t" =>
+                $"{Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)} {designator}" // 'hh:mm tt' e.g. 12:22 ب.ض
+            ,
+            "T" or "hh:mm:ss tt" =>
+                $"{Util.toDouble(smallhour)}:{Util.toDouble(this.Minute)}:{Util.toDouble(this.Second)} {designator}" // 'hh:mm:ss tt' e.g. 12:22:30 ب.ض
+            ,
             "w" or "W" => this.ToWritten(),
-            _ => $"{this.Year}/{Util.toDouble(this.Month)}/{Util.toDouble(this.Day)}"// ShortDatePattern yyyy/mm/dd e.g. '1384/09/01'
+            _ => $"{this.Year}/{Util.toDouble(this.Month)}/{Util.toDouble(this.Day)}"
         };
     }
 }

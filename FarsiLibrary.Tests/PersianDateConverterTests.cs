@@ -90,10 +90,9 @@ public class PersianDateConverterTests
 
         PersianCalendar pc = new PersianCalendar();
 
-
-        Assert.Equal(12, pc.GetMonth(dt));
-        Assert.Equal(30, pc.GetDayOfMonth(dt));
-        Assert.Equal(30, pc.GetDaysInMonth(dt.Year, dt.Month));
+        Assert.Equal(12, pd.Month);
+        Assert.Equal(30, pd.Day);
+        Assert.Equal(30, pd.MonthDays);
     }
 
     [Fact]

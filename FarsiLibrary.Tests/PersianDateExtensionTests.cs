@@ -27,7 +27,7 @@ public class PersianDateExtensionTests
         Assert.Equal((int)DayOfWeek.Saturday, (int)weekend.DayOfWeek);
         Assert.Equal(1388, weekend.Year);
         Assert.Equal(4,weekend.Month);
-        Assert.Equal(20,weekend.Day);            
+        Assert.Equal(20,weekend.Day);
     }
 
     [Fact]
@@ -106,6 +106,6 @@ public class PersianDateExtensionTests
         Assert.Equal(firstDay, forthDay.StartOfWeek());
         Assert.Equal(firstDay, fifthDay.StartOfWeek());
         Assert.Equal(firstDay, sixthDay.StartOfWeek());
-        Assert.Equal(firstDay, seventhDay.StartOfWeek());            
+        Assert.Equal(firstDay, seventhDay.StartOfWeek());
     }
 }

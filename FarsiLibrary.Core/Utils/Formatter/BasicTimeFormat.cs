@@ -65,13 +65,15 @@ public class BasicTimeFormat : ITimeFormat
     {
         var quantity = Math.Abs(duration.Quantity);
 
-        if (duration.Delta != 0)
+        if (duration.Delta == 0)
         {
-            var threshold = Math.Abs(duration.Delta / duration.Unit.MillisPerUnit * 100);
-            if (threshold < this.RoundingTolerance)
-            {
-                quantity += 1;
-            }
+            return Math.Truncate(quantity);
+        }
+
+        var threshold = Math.Abs(duration.Delta / duration.Unit.MillisPerUnit * 100);
+        if (threshold < this.RoundingTolerance)
+        {
+            quantity += 1;
         }
 
         return Math.Truncate(quantity);

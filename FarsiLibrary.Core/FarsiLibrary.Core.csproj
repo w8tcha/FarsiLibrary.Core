@@ -13,7 +13,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Farsi Library</Title>
     <Company>Hadi Eskandari</Company>
-    <PackageProjectUrl>http://github.com/HEskandari/FarsiLibrary</PackageProjectUrl>
+    <PackageProjectUrl>http://github.com/w8tcha/FarsiLibrary</PackageProjectUrl>
     <PackageTags>farsi persian language calendar dates jalali</PackageTags>
     <RepositoryUrl>https://github.com/w8tcha/FarsiLibrary</RepositoryUrl>
     <PackageLicenseFile>License.md</PackageLicenseFile>

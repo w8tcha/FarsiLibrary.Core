@@ -104,7 +104,6 @@ public static class DateTimeExtensions
                 DayOfWeek.Tuesday => 3,
                 DayOfWeek.Wednesday => 2,
                 DayOfWeek.Thursday => 1,
-                DayOfWeek.Friday => 0,
                 _ => 0
             };
 

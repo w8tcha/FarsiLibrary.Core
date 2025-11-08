@@ -34,7 +34,7 @@ public class PersianDateTimeFormatTests
         Assert.Equal("س", PersianDateTimeFormatInfo.GetWeekDayAbbrByIndex(3));
         Assert.Equal("چ", PersianDateTimeFormatInfo.GetWeekDayAbbrByIndex(4));
         Assert.Equal("پ", PersianDateTimeFormatInfo.GetWeekDayAbbrByIndex(5));
-        Assert.Equal("ج", PersianDateTimeFormatInfo.GetWeekDayAbbrByIndex(6));            
+        Assert.Equal("ج", PersianDateTimeFormatInfo.GetWeekDayAbbrByIndex(6));
     }
 
     [Fact]

@@ -528,11 +528,13 @@ public sealed class PersianCalendar : Calendar
         var count = 0;
         for (var i = 4; i < year; i++)
         {
-            if (IsLeapYear(false, i, 0))
+            if (!IsLeapYear(false, i, 0))
             {
-                count++;
-                i += 3;
+                continue;
             }
+
+            count++;
+            i += 3;
         }
 
         return count;
