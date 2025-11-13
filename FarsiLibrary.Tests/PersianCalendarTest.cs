@@ -100,11 +100,11 @@ public class PersianCalendarTest
     [Fact]
     public void Can_Get_Leap_Year()
     {
-        const int Leap = 1387;
-        const int Normal = 1386;
+        const int leap = 1387;
+        const int normal = 1386;
 
-        var result1 = this.calendar.IsLeapYear(Leap);
-        var result2 = this.calendar.IsLeapYear(Normal);
+        var result1 = this.calendar.IsLeapYear(leap);
+        var result2 = this.calendar.IsLeapYear(normal);
 
         Assert.True(result1);
         Assert.False(result2);
@@ -145,7 +145,7 @@ public class PersianCalendarTest
     }
 
     [Fact]
-    public void Increamenting_Month_In_Leap_Year_Should_Move_To_Next_Year()
+    public void Incrementing_Month_In_Leap_Year_Should_Move_To_Next_Year()
     {
         DateTime dt = new PersianDate(1386, 11, 30);
 
@@ -154,7 +154,7 @@ public class PersianCalendarTest
     }
 
     [Fact]
-    public void Increamenting_Year_In_Leap_Year_Should_Correct_The_Day_Value()
+    public void Incrementing_Year_In_Leap_Year_Should_Correct_The_Day_Value()
     {
         DateTime dt = new PersianDate(1387, 12, 30);
         PersianDate dtNext = this.calendar.AddYears(dt, 1);
