@@ -3,6 +3,7 @@ namespace FarsiLibrary.Tests;
 using FarsiLibrary.Core.Utils;
 using FarsiLibrary.Core.Utils.Internals;
 using FarsiLibrary.Tests.Helpers;
+
 using System;
 
 public class InternalTests

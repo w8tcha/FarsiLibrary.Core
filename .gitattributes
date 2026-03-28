@@ -1,1 +1,81 @@
-*.cs diff
+###############################################################################
+# Set default behavior to automatically normalize line endings.
+###############################################################################
+* text=auto
+
+
+*.cs     diff=csharp
+*.sln    merge=union
+*.csproj merge=union
+*.vbproj merge=union
+*.fsproj merge=union
+*.dbproj merge=union
+*.sql text
+*.html diff=html
+*.css    text
+*.js     text
+*.sql    text
+
+
+# Normalise endings to CRLF
+*.cs              eol=crlf
+*.xml             eol=crlf
+*.xaml            eol=crlf
+*.xsl             eol=crlf
+*.xsd             eol=crlf
+*.cshtml          eol=crlf
+*.css             eol=crlf
+*.js              eol=crlf
+*.txt             eol=crlf
+*.config          eol=crlf
+*.sql             eol=crlf
+*.sln             eol=crlf
+*.csproj          eol=crlf
+*.vbproj          eol=crlf
+*.fsproj          eol=crlf
+*.dbproj          eol=crlf
+*.nunit           eol=crlf
+*.html            eol=crlf
+*.md              eol=crlf
+*.proj            eol=crlf
+*.bat             eol=crlf
+*.cmd             eol=crlf
+*.nuspec          eol=crlf
+*.targets         eol=crlf
+*.conf            eol=crlf
+*.manifest        eol=crlf
+*.ps1             eol=crlf
+*.resx            eol=crlf
+*.asax            eol=crlf
+*.aspx            eol=crlf
+*.ncrunchproject  eol=crlf
+*.ncrunchsolution eol=crlf
+*.msbuild         eol=crlf
+*.template        eol=crlf
+*.settings        eol=crlf
+*.java            eol=crlf
+.gitattributes    eol=crlf
+.classpath        eol=crlf
+.project          eol=crlf
+
+
+###############################################################################
+# diff behavior for common document formats
+# 
+# Convert binary document formats to text before diffing them. This feature
+# is only available from the command line. Turn it on by uncommenting the 
+# entries below.
+###############################################################################
+#*.doc   diff=astextplain
+#*.DOC   diff=astextplain
+#*.docx  diff=astextplain
+#*.DOCX  diff=astextplain
+#*.dot   diff=astextplain
+#*.DOT   diff=astextplain
+#*.pdf   diff=astextplain
+#*.PDF   diff=astextplain
+#*.rtf   diff=astextplain
+#*.RTF   diff=astextplain
+
+
+*.cs text working-tree-encoding=UTF-8
