@@ -1,12 +1,14 @@
 namespace FarsiLibrary.Tests;
 
-using System.Collections.Generic;
-
 using FarsiLibrary.Core.Utils.Internals;
+
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class CollectionExtensionTests
 {
-    [Fact]
+    [Test]
     public void Can_Use_ForEach_On_Dictionaries()
     {
         var dictionary = new Dictionary<string, string>();
@@ -15,18 +17,19 @@ public class CollectionExtensionTests
         dictionary.Add("John", "Doe");
         dictionary.ForEach(_ => i++);
 
-        Assert.Equal(1, i);
+        i.Should().Be(1);
     }
 
-    [Fact]
+    [Test]
     public void Using_ForEach_On_Null_Will_Not_Throw()
     {
         IDictionary<object, object> dictionary = null;
         var i = 0;
 
-        var exception = Record.Exception(() => dictionary.ForEach(_ => i++));
-        Assert.Null(exception);
+        var act =  () => { dictionary.ForEach(_ => i++); };
 
-        Assert.Equal(0, i);
+        act.Should().NotThrow<Exception>();
+
+        i.Should().Be(0);
     }
 }

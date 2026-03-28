@@ -2,4 +2,6 @@
 
 global using System.Globalization;
 
-global using Xunit;
+global using AwesomeAssertions;
+
+global using NUnit.Framework;

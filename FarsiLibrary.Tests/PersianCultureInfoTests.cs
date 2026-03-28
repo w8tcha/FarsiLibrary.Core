@@ -1,112 +1,113 @@
 ﻿namespace FarsiLibrary.Tests;
 
+using FarsiLibrary.Core.Utils;
+using FarsiLibrary.Core.Utils.Internals;
+using FarsiLibrary.Tests.Helpers;
+
 using System;
 using System.Linq;
 
-using FarsiLibrary.Core.Utils;
-using FarsiLibrary.Tests.Helpers;
-
 public class PersianCultureInfoTests
 {
-    [Fact]
+    [Test]
     public void Can_Create_CultureInfo()
     {
         var ci = new PersianCultureInfo();
-        Assert.NotNull(ci);
+        ci.Should().NotBeNull();
     }
 
-    [Fact]
+    [Test]
     public void Can_Set_Thread_Culture()
     {
         PersianCultureInfo ci;
 
         using (new CultureSwitchContext(ci = new PersianCultureInfo()))
         {
-            Assert.Equal(ci, System.Threading.Thread.CurrentThread.CurrentUICulture);
-            Assert.Equal(ci, System.Threading.Thread.CurrentThread.CurrentCulture);
+            System.Threading.Thread.CurrentThread.CurrentUICulture.Should().Be(ci);
+            System.Threading.Thread.CurrentThread.CurrentCulture.Should().Be(ci);
         }
     }
 
-    [Fact]
+    [Test]
     public void Creating_PersianCultureInfo_Will_Set_Correct_Calendar()
     {
         var ci = new PersianCultureInfo();
 
-        Assert.IsNotType<PersianCalendar>(ci.Calendar);
-        Assert.True(PersianCultureInfo.IsReadOnly);
+        ci.Calendar.Should().NotBeOfType<PersianCalendar>();
+        (PersianCultureInfo.IsReadOnly).Should().BeTrue();
     }
 
-    [Fact]
+    [Test]
     public void Setting_ThreadCulture_To_PersianCulture_Will_Set_Correct_Calendar()
     {
         using (new CultureSwitchContext(new PersianCultureInfo()))
         {
-            Assert.IsNotType<PersianCalendar>(System.Threading.Thread.CurrentThread.CurrentUICulture.Calendar);
-            Assert.IsType<System.Globalization.PersianCalendar>(System.Threading.Thread.CurrentThread.CurrentUICulture.Calendar);
+            System.Threading.Thread.CurrentThread.CurrentUICulture.Calendar.Should().NotBeOfType<PersianCalendar>();
+            System.Threading.Thread.CurrentThread.CurrentUICulture.Calendar.Should().BeOfType<System.Globalization.PersianCalendar>();
         }
     }
 
-    [Fact]
+    [Test]
     public void Can_Clone_CultureInfo()
     {
         var original = new PersianCultureInfo();
         var clone = original.Clone();
 
-        Assert.NotSame(original, clone);
-        Assert.Equal(original, clone);
+        clone.Should().NotBeSameAs(original);
+        clone.Should().Be(original);
     }
 
-    [Fact]
+    [Test]
     public void Optional_Calendar_Contains_CorrectCalendars()
     {
         var ci = new PersianCultureInfo();
         var localCalendar = ci.OptionalCalendars.OfType<PersianCalendar>().FirstOrDefault();
         var frameworkCalendar = ci.OptionalCalendars.OfType<System.Globalization.PersianCalendar>().FirstOrDefault();
 
-        Assert.NotNull(frameworkCalendar);
-        Assert.NotNull(localCalendar);
+        frameworkCalendar.Should().NotBeNull();
+        localCalendar.Should().NotBeNull();
     }
 
-    [Fact]
+    [Test]
     public void Setting_DateFormat_To_Null_Throws()
     {
         var ci = new PersianCultureInfo();
 
-        Assert.Throws<ArgumentNullException>(() => ci.DateTimeFormat = null!);
+        new Action(() => { ci.DateTimeFormat = null!; }).Should().Throw<ArgumentNullException>();
     }
 
-    [Fact]
+    [Test]
     public void Can_Set_DateTimeFormat_To_Other_Instances()
     {
         var ci = new PersianCultureInfo();
 
-        var exception = Record.Exception(() => ci.DateTimeFormat = DateTimeFormatWrapper.GetFormatInfo());
-        Assert.Null(exception);
+        var exception = () => { ci.DateTimeFormat = DateTimeFormatWrapper.GetFormatInfo(); };
+        exception.Should().NotThrow();
     }
 
-    [Fact]
+    [Test]
     public void Can_Convert_To_String_With_InvariantCulture()
     {
         using (new CultureSwitchContext(new PersianCultureInfo()))
         {
             var dt = DateTime.MinValue;
 
-            var exception = Record.Exception(() => dt.ToString(CultureInfo.InvariantCulture));
-            Assert.Null(exception);
+            var exception = () => { dt.ToString(CultureInfo.InvariantCulture); };
+            exception.Should().NotThrow();
         }
     }
 
-    [Fact]
+    [Test]
     public void Converts_To_Correct_DayOfWeek()
     {
         PersianDate pd = new DateTime(2008, 10, 17);
         var dt = new DateTime(2008, 10, 18, 0, 0, 0, new System.Globalization.PersianCalendar());
 
-        Assert.Equal(DayOfWeek.Friday, pd.DayOfWeek);
-        Assert.Equal(DayOfWeek.Friday, dt.DayOfWeek);
+        pd.DayOfWeek.Should().Be(DayOfWeek.Friday);
+        dt.DayOfWeek.Should().Be(DayOfWeek.Friday);
     }
 
-    [Fact]
+    [Test]
     public void Converts_To_Correct_DayOfWeek_String()
     {
         var ci = new CultureInfo("fa-ir");
@@ -117,13 +118,13 @@ public class PersianCultureInfoTests
             var dt1 = new DateTime(2008, 10, 17);
             var dt2 = new DateTime(1387, 7, 26, 0, 0, 0, new System.Globalization.PersianCalendar());
 
-            Assert.Equal(dt1.ToString("dddd"), dt1.ToString("dddd"));
-            Assert.Equal(dt1.ToString("dddd", ci), dt2.ToString("dddd", ci));
-            Assert.Equal(dt1.ToString("dddd", cip), dt2.ToString("dddd", cip));
+            dt1.ToString("dddd").Should().Be(dt1.ToString("dddd"));
+            dt2.ToString("dddd", ci).Should().Be(dt1.ToString("dddd"));
+            dt2.ToString("dddd", cip).Should().Be(dt1.ToString("dddd"));
         }
     }
 
-    [Fact]
+    [Test]
     public void Should_Return_Right_DayOfWeek_Translation()
     {
         var cip = new PersianCultureInfo();
@@ -131,11 +132,11 @@ public class PersianCultureInfoTests
         using (new CultureSwitchContext(cip))
         {
             var friday = cip.DateTimeFormat.GetDayName(DayOfWeek.Friday);
-            Assert.Equal("جمعه", friday);
+            friday.Should().Be("جمعه");
         }
     }
 
-    [Fact]
+    [Test]
     public void Seven_DaysOfWeek_Index_Value_Validity_In_PersianCalendar()
     {
         var cip = new PersianCultureInfo();
@@ -143,38 +144,38 @@ public class PersianCultureInfoTests
         using (new CultureSwitchContext(cip))
         {
             var pd1 = new DateTime(1387, 8, 2, cip.Calendar);
-            Assert.Equal(DayOfWeek.Thursday, pd1.DayOfWeek);
+            pd1.DayOfWeek.Should().Be(DayOfWeek.Thursday);
 
             var pd2 = new DateTime(1387, 8, 3, cip.Calendar);
-            Assert.Equal(DayOfWeek.Friday, pd2.DayOfWeek);
+            pd2.DayOfWeek.Should().Be(DayOfWeek.Friday);
 
             var pd3 = new DateTime(1387, 8, 4, cip.Calendar);
-            Assert.Equal(DayOfWeek.Saturday, pd3.DayOfWeek);
+            pd3.DayOfWeek.Should().Be(DayOfWeek.Saturday);
 
             var pd4 = new DateTime(1387, 8, 5, cip.Calendar);
-            Assert.Equal(DayOfWeek.Sunday, pd4.DayOfWeek);
+            pd4.DayOfWeek.Should().Be(DayOfWeek.Sunday);
 
             var pd5 = new DateTime(1387, 8, 6, cip.Calendar);
-            Assert.Equal(DayOfWeek.Monday, pd5.DayOfWeek);
+            pd5.DayOfWeek.Should().Be(DayOfWeek.Monday);
 
             var pd6 = new DateTime(1387, 8, 7, cip.Calendar);
-            Assert.Equal(DayOfWeek.Tuesday, pd6.DayOfWeek);
+            pd6.DayOfWeek.Should().Be(DayOfWeek.Tuesday);
 
             var pd7 = new DateTime(1387, 8, 8, cip.Calendar);
-            Assert.Equal(DayOfWeek.Wednesday, pd7.DayOfWeek);
+            pd7.DayOfWeek.Should().Be(DayOfWeek.Wednesday);
         }
     }
 
-    [Fact]
+    [Test]
     public void Can_Create_Readonly_Copy()
     {
         var cip = new PersianCultureInfo();
 
-        var exception = Record.Exception(() => CultureInfo.ReadOnly(cip));
-        Assert.Null(exception);
+        var exception = () => { CultureInfo.ReadOnly(cip); };
+        exception.Should().NotThrow();
     }
 
-    [Fact]
+    [Test]
     public void Setting_Culture_To_PersianCultureInfo_Will_Set_DateTimeFormat()
     {
         var cip = new PersianCultureInfo();
@@ -182,20 +183,20 @@ public class PersianCultureInfoTests
 
         using(new CultureSwitchContext(cip))
         {
-            Assert.NotNull(cip.DateTimeFormat);
-            Assert.Equal(format.AbbreviatedDayNames, cip.DateTimeFormat.AbbreviatedDayNames);
-            Assert.Equal(format.AbbreviatedMonthGenitiveNames, cip.DateTimeFormat.AbbreviatedMonthGenitiveNames);
-            Assert.Equal(format.AbbreviatedMonthNames, cip.DateTimeFormat.AbbreviatedMonthNames);
-            Assert.Equal(format.AMDesignator, cip.DateTimeFormat.AMDesignator);
-            Assert.Equal(format.PMDesignator, cip.DateTimeFormat.PMDesignator);
-            Assert.Equal(format.Calendar, cip.DateTimeFormat.Calendar);
-            Assert.Equal(format.DayNames, cip.DateTimeFormat.DayNames);
-            Assert.Equal(format.DateSeparator, cip.DateTimeFormat.DateSeparator);
-            Assert.Equal(format.ShortDatePattern, cip.DateTimeFormat.ShortDatePattern);
-            Assert.Equal(format.ShortestDayNames, cip.DateTimeFormat.ShortestDayNames);
-            Assert.Equal(format.ShortTimePattern, cip.DateTimeFormat.ShortTimePattern);
-            Assert.Equal(format.YearMonthPattern, cip.DateTimeFormat.YearMonthPattern);
-            Assert.Equal(format.TimeSeparator, cip.DateTimeFormat.TimeSeparator);
+            cip.DateTimeFormat.Should().NotBeNull();
+            cip.DateTimeFormat.AbbreviatedDayNames.Should().BeEquivalentTo(format.AbbreviatedDayNames);
+            cip.DateTimeFormat.AbbreviatedMonthGenitiveNames.Should().BeEquivalentTo(format.AbbreviatedMonthGenitiveNames);
+            cip.DateTimeFormat.AbbreviatedMonthNames.Should().BeEquivalentTo(format.AbbreviatedMonthNames);
+            cip.DateTimeFormat.AMDesignator.Should().Be(format.AMDesignator);
+            cip.DateTimeFormat.PMDesignator.Should().Be(format.PMDesignator);
+            cip.DateTimeFormat.Calendar.Should().Be(format.Calendar);
+            cip.DateTimeFormat.DayNames.Should().BeEquivalentTo(format.DayNames);
+            cip.DateTimeFormat.DateSeparator.Should().Be(format.DateSeparator);
+            cip.DateTimeFormat.ShortDatePattern.Should().Be(format.ShortDatePattern);
+            cip.DateTimeFormat.ShortestDayNames.Should().BeEquivalentTo(format.ShortestDayNames);
+            cip.DateTimeFormat.ShortTimePattern.Should().Be(format.ShortTimePattern);
+            cip.DateTimeFormat.YearMonthPattern.Should().Be(format.YearMonthPattern);
+            cip.DateTimeFormat.TimeSeparator.Should().Be(format.TimeSeparator);
         }
     }
 }

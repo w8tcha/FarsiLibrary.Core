@@ -6,70 +6,70 @@ using FarsiLibrary.Core.Utils;
 
 public class PersianDateExtensionTests
 {
-    [Fact]
+    [Test]
     public void Can_Get_End_Of_Week()
     {
         var today = new PersianDate(1388, 4, 25);
         var weekend = today.EndOfWeek();
 
-        Assert.Equal((int)DayOfWeek.Friday, (int)weekend.DayOfWeek);
-        Assert.Equal(1388, weekend.Year);
-        Assert.Equal(4,weekend.Month);
-        Assert.Equal(26,weekend.Day);
+        ((int)weekend.DayOfWeek).Should().Be((int)DayOfWeek.Friday);
+        weekend.Year.Should().Be(1388);
+        weekend.Month.Should().Be(4);
+        weekend.Day.Should().Be(26);
     }
 
-    [Fact]
+    [Test]
     public void Can_Get_Start_Of_Week()
     {
         var today = new PersianDate(1388, 4, 25);
         var weekend = today.StartOfWeek();
 
-        Assert.Equal((int)DayOfWeek.Saturday, (int)weekend.DayOfWeek);
-        Assert.Equal(1388, weekend.Year);
-        Assert.Equal(4,weekend.Month);
-        Assert.Equal(20,weekend.Day);
+        ((int)weekend.DayOfWeek).Should().Be((int)DayOfWeek.Saturday);
+        weekend.Year.Should().Be(1388);
+        weekend.Month.Should().Be(4);
+        weekend.Day.Should().Be(20);
     }
 
-    [Fact]
+    [Test]
     public void Can_Get_End_Of_Month()
     {
         var today = new PersianDate(1388, 4, 20);
         var weekend = today.EndOfMonth();
 
-        Assert.Equal((int)DayOfWeek.Wednesday, (int)weekend.DayOfWeek);
-        Assert.Equal(1388,weekend.Year);
-        Assert.Equal(4,weekend.Month);
-        Assert.Equal(31,weekend.Day);
+        ((int)weekend.DayOfWeek).Should().Be((int)DayOfWeek.Wednesday);
+        weekend.Year.Should().Be(1388);
+        weekend.Month.Should().Be(4);
+        weekend.Day.Should().Be(31);
     }
 
-    [Fact]
+    [Test]
     public void Can_Get_Start_Of_Month()
     {
         var today = new PersianDate(1388, 4, 20);
         var weekend = today.StartOfMonth();
 
-        Assert.Equal((int)DayOfWeek.Monday, (int)weekend.DayOfWeek);
-        Assert.Equal(1388,weekend.Year);
-        Assert.Equal(4,weekend.Month);
-        Assert.Equal(1,weekend.Day);
+        ((int)weekend.DayOfWeek).Should().Be((int)DayOfWeek.Monday);
+        weekend.Year.Should().Be(1388);
+        weekend.Month.Should().Be(4);
+        weekend.Day.Should().Be(1);
     }
 
-    [Fact]
+    [Test]
     public void Can_Combine_Date_And_Time_Parts()
     {
         var prevDate = new PersianDate(1380, 1, 1, 5, 22, 30);
         var today = new PersianDate(1388, 4, 25);
         var combined = today.Combine(prevDate);
 
-        Assert.Equal(1388,combined.Year);
-        Assert.Equal(4,combined.Month);
-        Assert.Equal(25,combined.Day);
-        Assert.Equal(5,combined.Hour);
-        Assert.Equal(22,combined.Minute);
-        Assert.Equal(30,combined.Second);
+        combined.Year.Should().Be(1388);
+        combined.Month.Should().Be(4);
+        combined.Day.Should().Be(25);
+        combined.Hour.Should().Be(5);
+        combined.Minute.Should().Be(22);
+        combined.Second.Should().Be(30);
     }
 
-    [Fact]
+    [Test]
     public void Can_Get_End_Of_Week_For_Every_Day_Of_The_Week()
     {
         var firstDay = new PersianDate(1388, 7, 4);
@@ -80,16 +80,16 @@ public class PersianDateExtensionTests
         var sixthDay = new PersianDate(1388, 7, 9);
         var seventhDay = new PersianDate(1388, 7, 10);
 
-        Assert.Equal(seventhDay,firstDay.EndOfWeek());
-        Assert.Equal(seventhDay, secondDay.EndOfWeek());
-        Assert.Equal(seventhDay, thirdDay.EndOfWeek());
-        Assert.Equal(seventhDay, forthDay.EndOfWeek());
-        Assert.Equal(seventhDay, fifthDay.EndOfWeek());
-        Assert.Equal(seventhDay, sixthDay.EndOfWeek());
-        Assert.Equal(seventhDay, seventhDay.EndOfWeek());
+        firstDay.EndOfWeek().Should().Be(seventhDay);
+        secondDay.EndOfWeek().Should().Be(seventhDay);
+        thirdDay.EndOfWeek().Should().Be(seventhDay);
+        forthDay.EndOfWeek().Should().Be(seventhDay);
+        fifthDay.EndOfWeek().Should().Be(seventhDay);
+        sixthDay.EndOfWeek().Should().Be(seventhDay);
+        seventhDay.EndOfWeek().Should().Be(seventhDay);
     }
 
-    [Fact]
+    [Test]
     public void Can_Get_Start_Of_Week_For_Every_Day_Of_The_Week()
     {
         var firstDay = new PersianDate(1388, 7, 4);
@@ -100,12 +100,12 @@ public class PersianDateExtensionTests
         var sixthDay = new PersianDate(1388, 7, 9);
         var seventhDay = new PersianDate(1388, 7, 10);
 
-        Assert.Equal(firstDay, firstDay.StartOfWeek());
-        Assert.Equal(firstDay, secondDay.StartOfWeek());
-        Assert.Equal(firstDay, thirdDay.StartOfWeek());
-        Assert.Equal(firstDay, forthDay.StartOfWeek());
-        Assert.Equal(firstDay, fifthDay.StartOfWeek());
-        Assert.Equal(firstDay, sixthDay.StartOfWeek());
-        Assert.Equal(firstDay, seventhDay.StartOfWeek());
+        firstDay.StartOfWeek().Should().Be(firstDay);
+        secondDay.StartOfWeek().Should().Be(firstDay);
+        thirdDay.StartOfWeek().Should().Be(firstDay);
+        forthDay.StartOfWeek().Should().Be(firstDay);
+        fifthDay.StartOfWeek().Should().Be(firstDay);
+        sixthDay.StartOfWeek().Should().Be(firstDay);
+        seventhDay.StartOfWeek().Should().Be(firstDay);
     }
 }

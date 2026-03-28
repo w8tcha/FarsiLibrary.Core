@@ -5,20 +5,20 @@ using FarsiLibrary.Core.Utils.Internals;
 
 public class CultureInfoExtensionTests
 {
-    [Fact]
+    [Test]
     public void Can_Determine_Farsi_Culture()
     {
-        Assert.True(new CultureInfo("fa-ir").IsFarsiCulture());
-        Assert.True(new PersianCultureInfo().IsFarsiCulture());
-        Assert.True(new CultureInfo("fa").IsFarsiCulture());
-        Assert.False(new CultureInfo("fr").IsFarsiCulture());
+        new CultureInfo("fa-ir").IsFarsiCulture().Should().BeTrue();
+        new PersianCultureInfo().IsFarsiCulture().Should().BeTrue();
+        new CultureInfo("fa").IsFarsiCulture().Should().BeTrue();
+        new CultureInfo("fr").IsFarsiCulture().Should().BeFalse();
     }
 
-    [Fact]
+    [Test]
     public void Can_Determine_Arabic_Culture()
     {
-        Assert.True(new CultureInfo("ar").IsArabicCulture());
-        Assert.True(new CultureInfo("ar-sa").IsArabicCulture());
-        Assert.False(new CultureInfo("fa-ir").IsArabicCulture());
+        new CultureInfo("ar").IsArabicCulture().Should().BeTrue();
+        new CultureInfo("ar-sa").IsArabicCulture().Should().BeTrue();
+        new CultureInfo("fa-ir").IsArabicCulture().Should().BeFalse();
     }
 }

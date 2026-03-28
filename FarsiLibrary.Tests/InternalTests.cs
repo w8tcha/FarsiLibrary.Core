@@ -1,82 +1,81 @@
 namespace FarsiLibrary.Tests;
 
-using System;
-
 using FarsiLibrary.Core.Utils;
 using FarsiLibrary.Core.Utils.Internals;
 using FarsiLibrary.Tests.Helpers;
+using System;
 
 public class InternalTests
 {
-    [Fact]
+    [Test]
     public void Can_Get_IndexOfDay_For_PersianCalendar_Using_CultureHelper()
     {
         var pc = new PersianCalendar();
         var dt = new DateTime(2009, 5, 11); // Should be Monday
         var dow = CultureHelper.GetDayOfWeek(dt, pc);
 
-        Assert.Equal(2, dow);
+        dow.Should().Be(2);
     }
 
-    [Fact]
+    [Test]
     public void Can_Get_IndexOfDay_For_HijriCalendar_Using_CultureHelper()
     {
         var hc = new HijriCalendar();
         var dt = new DateTime(2009, 5, 11); // Should be Monday
         var dow = CultureHelper.GetDayOfWeek(dt, hc);
 
-        Assert.Equal(1, dow);
+        dow.Should().Be(1);
     }
 
-    [Fact]
+    [Test]
     public void Can_Get_IndexOfDay_For_Other_Calendars_Using_CultureHelper()
     {
         var calendar = new GregorianCalendar();
         var dt = new DateTime(2009, 5, 11); // Should be Monday
         var dow = CultureHelper.GetDayOfWeek(dt, calendar);
 
-        Assert.Equal(1, dow);
+        dow.Should().Be(1);
     }
 
-    [Fact]
+    [Test]
     public void Can_Get_Correct_Current_Calendar()
     {
-        using(new CultureSwitchContext(new PersianCultureInfo()))
+        using (new CultureSwitchContext(new PersianCultureInfo()))
         {
             var calendar = CultureHelper.CurrentCalendar;
-            Assert.IsType<PersianCalendar>(calendar);
+            calendar.Should().BeOfType<PersianCalendar>();
         }
 
-        using(new CultureSwitchContext(new CultureInfo("ar-sa")))
+        using (new CultureSwitchContext(new CultureInfo("ar-sa")))
         {
             var calendar = CultureHelper.CurrentCalendar;
-            Assert.IsType<HijriCalendar>(calendar);
+            calendar.Should().BeOfType<HijriCalendar>();
         }
 
         using (new CultureSwitchContext(new CultureInfo("en-us")))
         {
             var calendar = CultureHelper.CurrentCalendar;
-            Assert.IsType<GregorianCalendar>(calendar);
+            calendar.Should().BeOfType<GregorianCalendar>();
         }
     }
 
-    [Fact]
+    [Test]
     public void Can_Get_Correct_DayOfWeek_Using_CultureHelper()
     {
         using(new CultureSwitchContext(new PersianCultureInfo()))
         {
             var dow = CultureHelper.GetCultureDayOfWeek(2, CultureHelper.CurrentCulture); // It is a zero based index
-            Assert.Equal(DayOfWeek.Monday, dow);
+            dow.Should().Be(DayOfWeek.Monday);
         }
 
         using(new CultureSwitchContext(new CultureInfo("en-us")))
         {
             var dow = CultureHelper.GetCultureDayOfWeek(2, CultureHelper.CurrentCulture); // It is a zero based index
-            Assert.Equal(DayOfWeek.Tuesday, dow);
+            dow.Should().Be(DayOfWeek.Tuesday);
         }
     }
 
-    [Fact]
+    [Test]
     public void Max_Min_Supported_Value_Equals_PersianDate_Max_Min_Values()
     {
         using(new CultureSwitchContext(new CultureInfo("fa-ir")))
@@ -84,96 +83,96 @@ public class InternalTests
             var min = CultureHelper.MinCultureDateTime;
             var max = CultureHelper.MaxCultureDateTime;
 
-            Assert.Equal(PersianDate.MinValue, min);
-            Assert.Equal(PersianDate.MaxValue, max);
+            min.Should().Be(PersianDate.MinValue);
+            max.Should().Be(PersianDate.MaxValue);
         }
     }
 
-    [Fact]
+    [Test]
     public void Can_Guard_Against_Wrong_Conditions()
     {
-        Assert.Throws<InvalidOperationException>(() => Guard.Against(true, "Value Wrong"));
+        new Action(() => { Guard.Against(true, "Value Wrong"); }).Should().Throw<InvalidOperationException>();
     }
 
-    [Fact]
+    [Test]
     public void Can_Guard_With_Specific_Exception()
     {
-        Assert.Throws<OutOfMemoryException>(() => Guard.Against<OutOfMemoryException>(true, "Out Of memory"));
+        new Action(() => { Guard.Against<OutOfMemoryException>(true, "Out Of memory"); }).Should().Throw<OutOfMemoryException>();
     }
 
-    [Fact]
+    [Test]
     public void Will_Not_Throw_If_Condition_Is_Not_Met()
     {
-        var exception = Record.Exception(() => Guard.Against(false, string.Empty));
-        Assert.Null(exception);
+        var exception = () => { Guard.Against(false, string.Empty); };
+        exception.Should().NotThrow();
 
-        exception = Record.Exception(() => Guard.Against<Exception>(false, string.Empty));
-        Assert.Null(exception);
+        exception = () => { Guard.Against<Exception>(false, string.Empty); };
+        exception.Should().NotThrow();
     }
 
-    [Fact]
+    [Test]
     public void Can_Get_Field_Value()
     {
         var test = new ReflectionTestClass();
         var value = ReflectionHelper.GetField<string>(test, "TestField");
 
-        Assert.Equal("TestValue", value);
+        value.Should().Be("TestValue");
     }
 
-    [Fact]
+    [Test]
     public void Can_Set_Field_Value()
     {
         var test = new ReflectionTestClass();
         ReflectionHelper.SetField(test, "TestField" , "NewValue");
         var value = ReflectionHelper.GetField<string>(test, "TestField");
 
-        Assert.Equal("NewValue", value);
+        value.Should().Be("NewValue");
     }
 
-    [Fact]
+    [Test]
     public void Getting_Field_Value_With_Null_Owner_Throws()
     {
-        Assert.Throws<ArgumentNullException>(() => ReflectionHelper.GetField((object)null, "TestField"));
-        Assert.Throws<ArgumentNullException>(() => ReflectionHelper.GetField(new ReflectionTestClass(), "NonExistingField"));
+        new Action(() => { ReflectionHelper.GetField((object)null, "TestField"); }).Should().Throw<ArgumentNullException>();
+        new Action(() => { ReflectionHelper.GetField(new ReflectionTestClass(), "NonExistingField"); }).Should().Throw<ArgumentNullException>();
     }
 
-    [Fact]
+    [Test]
     public void Getting_Property_Value_With_Null_Owner_Throws()
     {
-        Assert.Throws<ArgumentNullException>(() => ReflectionHelper.GetProperty(null, "TestField"));
-        Assert.Throws<ArgumentNullException>(() => ReflectionHelper.GetProperty(new ReflectionTestClass(), "NonExistingField"));
+        new Action(() => { ReflectionHelper.GetProperty(null, "TestField"); }).Should().Throw<ArgumentNullException>();
+        new Action(() => { ReflectionHelper.GetProperty(new ReflectionTestClass(), "NonExistingField"); }).Should().Throw<ArgumentNullException>();
     }
 
-    [Fact]
+    [Test]
     public void Setting_Field_Value_With_Null_Owner_Throws()
     {
-        Assert.Throws<ArgumentNullException>(() => ReflectionHelper.SetField(null, "TestField", "TestValue"));
+        new Action(() => { ReflectionHelper.SetField(null, "TestField", "TestValue"); }).Should().Throw<ArgumentNullException>();
     }
 
-    [Fact]
+    [Test]
     public void Can_Get_Property_Value()
     {
         var test = new ReflectionTestClass();
         var value = ReflectionHelper.GetProperty<string>(test, "TestProperty");
 
-        Assert.Equal("TestValue", value);
+        value.Should().Be("TestValue");
     }
 
-    [Fact]
+    [Test]
     public void Can_Invoke_Method()
     {
         var test = new ReflectionTestClass();
         ReflectionHelper.InvokeMethod(test, "Method");
 
-        Assert.True(test.MethodInvoked);
+        (test.MethodInvoked).Should().BeTrue();
     }
 
-    [Fact]
+    [Test]
     public void Can_Invoke_StaticMethod()
     {
         ReflectionHelper.InvokeStaticMethod(typeof(ReflectionTestClass), "StaticMethod");
 
-        Assert.True(ReflectionTestClass.StaticMethodInvoked);
+        (ReflectionTestClass.StaticMethodInvoked).Should().BeTrue();
     }
 
     public class ReflectionTestClass
@@ -183,7 +182,7 @@ public class InternalTests
             this.TestField = this.TestProperty = "TestValue";
         }
 
-        private string TestField;
+        private readonly string TestField;
 
         public string TestProperty
         {
