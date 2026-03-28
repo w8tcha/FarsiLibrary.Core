@@ -6,7 +6,7 @@ public static class DateTimeFormatWrapper
     {
         return new DateTimeFormatInfo
                    {
-                       DateSeparator = "-",
+                       DateSeparator = "-"
                    };
     }
 }
