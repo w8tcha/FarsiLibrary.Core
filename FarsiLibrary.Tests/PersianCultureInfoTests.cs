@@ -1,7 +1,6 @@
 ﻿namespace FarsiLibrary.Tests;
 
 using FarsiLibrary.Core.Utils;
-using FarsiLibrary.Core.Utils.Internals;
 using FarsiLibrary.Tests.Helpers;
 
 using System;
@@ -92,7 +91,7 @@ public class PersianCultureInfoTests
         {
             var dt = DateTime.MinValue;
 
-            var exception = () => { dt.ToString(CultureInfo.InvariantCulture); };
+            var exception = () => { _ = dt.ToString(CultureInfo.InvariantCulture); };
             exception.Should().NotThrow();
         }
     }

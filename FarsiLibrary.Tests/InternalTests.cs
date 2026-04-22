@@ -115,7 +115,7 @@ public class InternalTests
     public void Can_Get_Field_Value()
     {
         var test = new ReflectionTestClass();
-        var value = ReflectionHelper.GetField<string>(test, "TestField");
+        var value = ReflectionHelper.GetField<string>(test, "testField");
 
         value.Should().Be("TestValue");
     }
@@ -124,8 +124,8 @@ public class InternalTests
     public void Can_Set_Field_Value()
     {
         var test = new ReflectionTestClass();
-        ReflectionHelper.SetField(test, "TestField" , "NewValue");
-        var value = ReflectionHelper.GetField<string>(test, "TestField");
+        ReflectionHelper.SetField(test, "testField" , "NewValue");
+        var value = ReflectionHelper.GetField<string>(test, "testField");
 
         value.Should().Be("NewValue");
     }
@@ -133,21 +133,21 @@ public class InternalTests
     [Test]
     public void Getting_Field_Value_With_Null_Owner_Throws()
     {
-        new Action(() => { ReflectionHelper.GetField((object)null, "TestField"); }).Should().Throw<ArgumentNullException>();
+        new Action(() => { ReflectionHelper.GetField((object)null, "testField"); }).Should().Throw<ArgumentNullException>();
         new Action(() => { ReflectionHelper.GetField(new ReflectionTestClass(), "NonExistingField"); }).Should().Throw<ArgumentNullException>();
     }
 
     [Test]
     public void Getting_Property_Value_With_Null_Owner_Throws()
     {
-        new Action(() => { ReflectionHelper.GetProperty(null, "TestField"); }).Should().Throw<ArgumentNullException>();
+        new Action(() => { ReflectionHelper.GetProperty(null, "testField"); }).Should().Throw<ArgumentNullException>();
         new Action(() => { ReflectionHelper.GetProperty(new ReflectionTestClass(), "NonExistingField"); }).Should().Throw<ArgumentNullException>();
     }
 
     [Test]
     public void Setting_Field_Value_With_Null_Owner_Throws()
     {
-        new Action(() => { ReflectionHelper.SetField(null, "TestField", "TestValue"); }).Should().Throw<ArgumentNullException>();
+        new Action(() => { ReflectionHelper.SetField(null, "testField", "TestValue"); }).Should().Throw<ArgumentNullException>();
     }
 
     [Test]
@@ -180,10 +180,10 @@ public class InternalTests
     {
         public ReflectionTestClass()
         {
-            this.TestField = this.TestProperty = "TestValue";
+            this.testField = this.TestProperty = "TestValue";
         }
 
-        private readonly string TestField;
+        private readonly string testField;
 
         public string TestProperty
         {

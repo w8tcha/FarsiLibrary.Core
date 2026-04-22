@@ -571,18 +571,21 @@ public sealed class PersianCalendar : Calendar
 
     private static void CheckDateRange(bool validate, int year, int month, int day)
     {
-        if (validate)
+        if (!validate)
         {
-            var maxday = GetDaysInMonth(true, year, month, 0);
-            if (day < 1 || maxday < day)
-            {
-                if (day == 30 && month == 12)
-                {
-                    throw new InvalidPersianDateException(FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidLeapYear));
-                }
+            return;
+        }
 
+        var maxday = GetDaysInMonth(true, year, month, 0);
+
+        switch (day)
+        {
+            case >= 1 when maxday >= day:
+                return;
+            case 30 when month == 12:
+                throw new InvalidPersianDateException(FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidLeapYear));
+            default:
                 throw new InvalidPersianDateException(FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidDay));
-            }
         }
     }
 

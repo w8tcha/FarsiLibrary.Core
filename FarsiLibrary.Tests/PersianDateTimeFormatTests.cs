@@ -1,7 +1,7 @@
 ﻿namespace FarsiLibrary.Tests;
 
 using FarsiLibrary.Core.Utils;
-using FarsiLibrary.Core.Utils.Internals;
+
 using System;
 
 public class PersianDateTimeFormatTests

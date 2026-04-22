@@ -513,31 +513,31 @@ After:
     /// <returns></returns>
     public static PersianDate Parse(string value)
     {
-        if (!string.IsNullOrEmpty(value))
+        if (string.IsNullOrEmpty(value))
         {
-            try
-            {
-                var dt = DateTime.Parse(value, CultureHelper.PersianCulture, DateTimeStyles.None);
-
-                var year = pc.GetYear(dt);
-                var month = pc.GetMonth(dt);
-                var day = pc.GetDayOfMonth(dt);
-
-                // Fixed: If year is 2 digit, it is probably 13xx.
-                if (year < 100)
-                {
-                    year = 1300 + year;
-                }
-
-                return new PersianDate(year, month, day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond);
-            }
-            catch (Exception)
-            {
-                throw new InvalidPersianDateFormatException("Can not parse the value. Format is incorrect.");
-            }
+            throw new InvalidPersianDateFormatException("Can not parse the value. Format is incorrect.");
         }
 
-        throw new InvalidPersianDateFormatException("Can not parse the value. Format is incorrect.");
+        try
+        {
+            var dt = DateTime.Parse(value, CultureHelper.PersianCulture, DateTimeStyles.None);
+
+            var year = pc.GetYear(dt);
+            var month = pc.GetMonth(dt);
+            var day = pc.GetDayOfMonth(dt);
+
+            // Fixed: If year is 2 digit, it is probably 13xx.
+            if (year < 100)
+            {
+                year = 1300 + year;
+            }
+
+            return new PersianDate(year, month, day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond);
+        }
+        catch (Exception)
+        {
+            throw new InvalidPersianDateFormatException("Can not parse the value. Format is incorrect.");
+        }
     }
 
     /// <summary>

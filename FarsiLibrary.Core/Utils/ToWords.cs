@@ -160,7 +160,7 @@ public static class ToWords
             case > 999999999:
                 {
                     t = x / 1000000000;
-                    result += cvt100(t) + " " + cvtText[31];
+                    result += $"{cvt100(t)} {cvtText[31]}";
                     x -= t * 1000000000;
 
                     if (x <= 0)
@@ -176,7 +176,7 @@ public static class ToWords
         if (x > 999999)
         {
             t = x / 1000000;
-            result += cvt100(t) + " " + cvtText[30];
+            result += $"{cvt100(t)} {cvtText[30]}";
             x -= t * 1000000;
 
             if (x <= 0)
@@ -190,7 +190,7 @@ public static class ToWords
         if (x > 999)
         {
             t = x / 1000;
-            result += cvt100(t) + " " + cvtText[29];
+            result += $"{cvt100(t)} {cvtText[29]}";
             x -= t * 1000;
 
             if (x <= 0)

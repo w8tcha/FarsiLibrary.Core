@@ -22,12 +22,7 @@ public class TestFormatProvider : IFormatProvider
                 return pd.ToString(format);
             }
 
-            if (format == "CustomYearMonth")
-            {
-                return pd.Year + " -- " + pd.Month;
-            }
-
-            return pd.ToString(format);
+            return format == "CustomYearMonth" ? $"{pd.Year} -- {pd.Month}" : pd.ToString(format);
         }
     }
 }

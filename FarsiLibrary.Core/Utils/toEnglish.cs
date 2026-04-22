@@ -25,16 +25,16 @@ public sealed class toEnglish
                 string.Empty,
                 (current, numTemp) => numTemp switch
                     {
-                        "۰" => current + "0",
-                        "۱" => current + "1",
-                        "۲" => current + "2",
-                        "۳" => current + "3",
-                        "۴" => current + "4",
-                        "۵" => current + "5",
-                        "۶" => current + "6",
-                        "۷" => current + "7",
-                        "۸" => current + "8",
-                        "۹" => current + "9",
+                        "۰" => $"{current}0",
+                        "۱" => $"{current}1",
+                        "۲" => $"{current}2",
+                        "۳" => $"{current}3",
+                        "۴" => $"{current}4",
+                        "۵" => $"{current}5",
+                        "۶" => $"{current}6",
+                        "۷" => $"{current}7",
+                        "۸" => $"{current}8",
+                        "۹" => $"{current}9",
                         _ => current + numTemp
                     });
 

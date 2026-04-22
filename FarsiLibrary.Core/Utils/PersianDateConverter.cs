@@ -281,18 +281,19 @@ public sealed class PersianDateConverter
         var iGMonth = i + 1;
         var iGDay = gdays;
 
-        return Util.toDouble(iGMonth) + "/" + Util.toDouble(iGDay) + "/" + gyear + " " + Util.toDouble(date.Hour) + ":" + Util.toDouble(date.Minute) + ":" + Util.toDouble(date.Second);
+        return
+            $"{Util.toDouble(iGMonth)}/{Util.toDouble(iGDay)}/{gyear} {Util.toDouble(date.Hour)}:{Util.toDouble(date.Minute)}:{Util.toDouble(date.Second)}";
     }
 
     internal static string DayOfWeek(PersianDate date)
     {
-        if (!date.IsNull)
+        if (date.IsNull)
         {
-            var dt = ToGregorianDateTime(date);
-            return DayOfWeek(dt);
+            return string.Empty;
         }
 
-        return string.Empty;
+        var dt = ToGregorianDateTime(date);
+        return DayOfWeek(dt);
     }
 
     /// <summary>

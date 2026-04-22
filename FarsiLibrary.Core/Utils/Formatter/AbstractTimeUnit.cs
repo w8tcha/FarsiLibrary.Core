@@ -22,14 +22,14 @@ public abstract class AbstractTimeUnit : ITimeUnit
     private void LoadStringKeys()
     {
         var resPrefix = this.GetResourcePrefix();
-        var pattern = this.LocalizeManager.GetLocalizer().GetFormatterString(resPrefix + "Pattern");
-        var futurePrefix = this.LocalizeManager.GetLocalizer().GetFormatterString(resPrefix + "FuturePrefix");
-        var futureSuffix = this.LocalizeManager.GetLocalizer().GetFormatterString(resPrefix + "FutureSuffix");
-        var pastPrefix = this.LocalizeManager.GetLocalizer().GetFormatterString(resPrefix + "PastPrefix");
-        var pastSuffix = this.LocalizeManager.GetLocalizer().GetFormatterString(resPrefix + "PastSuffix");
+        var pattern = this.LocalizeManager.GetLocalizer().GetFormatterString($"{resPrefix}Pattern");
+        var futurePrefix = this.LocalizeManager.GetLocalizer().GetFormatterString($"{resPrefix}FuturePrefix");
+        var futureSuffix = this.LocalizeManager.GetLocalizer().GetFormatterString($"{resPrefix}FutureSuffix");
+        var pastPrefix = this.LocalizeManager.GetLocalizer().GetFormatterString($"{resPrefix}PastPrefix");
+        var pastSuffix = this.LocalizeManager.GetLocalizer().GetFormatterString($"{resPrefix}PastSuffix");
 
-        this.Name = this.LocalizeManager.GetLocalizer().GetFormatterString(resPrefix + "Name");
-        this.PluralName = this.LocalizeManager.GetLocalizer().GetFormatterString(resPrefix + "PluralName");
+        this.Name = this.LocalizeManager.GetLocalizer().GetFormatterString($"{resPrefix}Name");
+        this.PluralName = this.LocalizeManager.GetLocalizer().GetFormatterString($"{resPrefix}PluralName");
 
         this.Format = new BasicTimeFormat().SetPattern(pattern)
             .SetFuturePrefix(futurePrefix)

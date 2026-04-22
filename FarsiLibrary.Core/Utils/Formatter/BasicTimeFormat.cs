@@ -35,11 +35,11 @@ public class BasicTimeFormat : ITimeFormat
     {
         if (sign == Negative)
         {
-            result = this.PastPrefix + " " + result + " " + this.PastSuffix;
+            result = $"{this.PastPrefix} {result} {this.PastSuffix}";
         }
         else
         {
-            result = this.FuturePrefix + " " + result + " " + this.FutureSuffix;
+            result = $"{this.FuturePrefix} {result} {this.FutureSuffix}";
         }
 
         return result.Trim();
