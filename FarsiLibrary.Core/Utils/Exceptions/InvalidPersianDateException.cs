@@ -14,6 +14,7 @@ public class InvalidPersianDateException : Exception
     }
 
     public InvalidPersianDateException(string message, object value)
+        : base(message)
     {
         this.InvalidValue = value;
     }

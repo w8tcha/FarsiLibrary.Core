@@ -56,10 +56,10 @@ public sealed class PersianDate : IFormattable,
     private static readonly PersianCalendar pc;
 
     [NonSerialized]
-    public static DateTime MinValue;
+    public static readonly DateTime MinValue;
 
     [NonSerialized]
-    public static DateTime MaxValue;
+    public static readonly DateTime MaxValue;
 
     /// <summary>
     /// Static constructor initializes Now property of PersianDate and Min/Max values.
@@ -231,7 +231,7 @@ public sealed class PersianDate : IFormattable,
     public int MonthDays => PersianDateConverter.MonthDays(this.month);
 
     [Browsable(false)]
-    public bool IsNull => this.Year <= MinValue.Year && this.Month <= MinValue.Month && this.Day <= MinValue.Day;
+    public bool IsNull => this.ToDateTime() <= MinValue;
 
     public PersianDate(DateTime dt)
     {
@@ -376,7 +376,7 @@ After:
 
     private static void CheckYear(int YearNo)
     {
-        if (YearNo is < 1 or > 9999)
+        if (YearNo is < 1 or > 9378)
         {
             throw new InvalidPersianDateException(
                 FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidYear),
@@ -398,15 +398,15 @@ After:
     {
         switch (MonthNo)
         {
-            case < 6 when DayNo > 31:
+            case <= 6 when DayNo is < 1 or > 31:
                 throw new InvalidPersianDateException(
                     FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidDay),
                     DayNo);
-            case > 6 when DayNo > 30:
+            case > 6 and < 12 when DayNo is < 1 or > 30:
                 throw new InvalidPersianDateException(
                     FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidDay),
                     DayNo);
-            case 12 when DayNo > 29 && (!pc.IsLeapDay(YearNo, MonthNo, DayNo) || DayNo > 30):
+            case 12 when DayNo < 1 || (DayNo > 29 && (!pc.IsLeapDay(YearNo, MonthNo, DayNo) || DayNo > 30)):
                 throw new InvalidPersianDateException(
                     FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidDay),
                     DayNo);
@@ -415,7 +415,7 @@ After:
 
     private static void CheckHour(int HourNo)
     {
-        if (HourNo is > 24 or < 0)
+        if (HourNo is > 23 or < 0)
         {
             throw new InvalidPersianDateException(
                 FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidHour),
@@ -425,7 +425,7 @@ After:
 
     private static void CheckMinute(int MinuteNo)
     {
-        if (MinuteNo is > 60 or < 0)
+        if (MinuteNo is > 59 or < 0)
         {
             throw new InvalidPersianDateException(
                 FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidMinute),
@@ -435,7 +435,7 @@ After:
 
     private static void CheckSecond(int SecondNo)
     {
-        if (SecondNo is > 60 or < 0)
+        if (SecondNo is > 59 or < 0)
         {
             throw new InvalidPersianDateException(
                 FALocalizeManager.Instance.GetLocalizer().GetLocalizedString(StringID.PersianDate_InvalidSecond));
@@ -444,7 +444,7 @@ After:
 
     private static void CheckMillisecond(int MillisecondNo)
     {
-        if (MillisecondNo is < 0 or > 1000)
+        if (MillisecondNo is < 0 or > 999)
         {
             throw new InvalidPersianDateException(
                 FALocalizeManager.Instance.GetLocalizer()

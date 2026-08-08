@@ -28,6 +28,7 @@ public class ENLocalizer : BaseLocalizer
                 StringID.PersianDate_InvalidFourDigitYear => "Invalid four digit Year value",
                 StringID.PersianDate_InvalidHour => "Invalid Hour value",
                 StringID.PersianDate_InvalidLeapYear => "Not a leap year. Correct the day value.",
+                StringID.PersianDate_InvalidMillisecond => "Invalid Millisecond value",
                 StringID.PersianDate_InvalidMinute => "Invalid Minute value",
                 StringID.PersianDate_InvalidMonth => "Invalid Month value",
                 StringID.PersianDate_InvalidMonthDay => "Invalid Month/Day value",

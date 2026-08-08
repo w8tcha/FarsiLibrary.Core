@@ -7,7 +7,7 @@ internal class PersianWeekDayNames
     public string Shanbeh = "شنبه";
     public string Yekshanbeh = "یکشنبه";
     public string Doshanbeh = "دوشنبه";
-    public string Seshanbeh = "ﺳﻪشنبه";
+    public string Seshanbeh = "سهشنبه";
     public string Chaharshanbeh = "چهارشنبه";
     public string Panjshanbeh = "پنجشنبه";
     public string Jomeh = "جمعه";

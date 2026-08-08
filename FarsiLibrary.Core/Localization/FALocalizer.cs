@@ -31,6 +31,7 @@ public class FALocalizer : BaseLocalizer
                 StringID.PersianDate_InvalidFourDigitYear => "مقدار وارد شده را نمیتوان به سال تبدیل کرد.",
                 StringID.PersianDate_InvalidHour => "مقدار ساعت صحیح نمیباشد.",
                 StringID.PersianDate_InvalidLeapYear => "این سال ، سال کبیسه نیست. مقدار روز صحیح نمیباشد.",
+                StringID.PersianDate_InvalidMillisecond => "مقدار میلی ثانیه صحیح نمیباشد.",
                 StringID.PersianDate_InvalidMinute => "مقدار دقیقه صحیح نمیباشد.",
                 StringID.PersianDate_InvalidMonth => "مقدار ماه صحیح نمیباشد.",
                 StringID.PersianDate_InvalidMonthDay => "مقدار ماه/روز صحیح نمیباشد.",

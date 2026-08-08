@@ -210,8 +210,8 @@ public class PersianCalendarTest
     [Test]
     public void Can_Get_Number_Of_Leap_Years()
     {
-        //335 leap years from the start of the calendar to 1387
-         PersianCalendar.NumberOfLeapYearsUntil(1387).Should().Be(335);
+        //336 leap years from the start of the calendar to 1387 (year 1 is itself a leap year: 1 % 33 == 1)
+         PersianCalendar.NumberOfLeapYearsUntil(1387).Should().Be(336);
     }
 
     [Test]

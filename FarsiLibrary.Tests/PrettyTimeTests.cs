@@ -86,12 +86,12 @@ public class PrettyTimeTests
 
     [TestCase(-1, "1 year ago", "en-US")]
     [TestCase(2, "2 years from now", "en-US")]
-    [TestCase(50, "6 decades from now", "en-US")]
+    [TestCase(50, "5 decades from now", "en-US")]
     [TestCase(100, "10 decades from now", "en-US")]
     [TestCase(101, "1 century from now", "en-US")]
     [TestCase(-1, "يک سال قبل", "fa-IR")]
     [TestCase(2, "دو سال بعد", "fa-IR")]
-    [TestCase(50, "شش دهه بعد", "fa-IR")]
+    [TestCase(50, "پنج دهه بعد", "fa-IR")]
     [TestCase(100, "ده دهه بعد", "fa-IR")]
     [TestCase(101, "يک قرن بعد", "fa-IR")]
     public void Can_Format_Years(int years, string expected, string cultureName)

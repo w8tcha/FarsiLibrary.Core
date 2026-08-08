@@ -422,7 +422,7 @@ public sealed class PersianCalendar : Calendar
 
         // following line validates the arguments of time
         var timePart = new DateTime(1, 1, 1, hour, minute, second, millisecond);
-        var ticks = days * 864000000000L + timePart.Ticks + 195721056000000000L;
+        var ticks = days * 864000000000L + timePart.Ticks + 195720192000000000L;
 
         DateTime dateTime;
         try
@@ -525,19 +525,7 @@ public sealed class PersianCalendar : Calendar
     private static int NumberOfLeapYearsUntil(bool validate, int year)
     {
         CheckYearRange(validate, year);
-        var count = 0;
-        for (var i = 4; i < year; i++)
-        {
-            if (!IsLeapYear(false, i, 0))
-            {
-                continue;
-            }
-
-            count++;
-            i += 3;
-        }
-
-        return count;
+        return PersianDateConverter.JLeapYears(year - 1);
     }
 
     private static void CheckEraRange(bool validate, int era)

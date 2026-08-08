@@ -71,7 +71,8 @@ public class PrettyTime
 
             result.Unit = unit;
             result.Quantity = difference / millisPerUnit;
-            result.Delta = difference - result.Quantity * millisPerUnit * 10;
+            var truncatedQuantity = Math.Truncate(Math.Abs(result.Quantity));
+            result.Delta = (truncatedQuantity + 1) * millisPerUnit - Math.Abs(difference);
             break;
         }
 

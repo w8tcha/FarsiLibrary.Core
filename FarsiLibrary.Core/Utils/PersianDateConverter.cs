@@ -77,7 +77,7 @@ public sealed class PersianDateConverter
         return (gYear - 1) * 365 + gDay + Div4 - Div100 + Div400;
     }
 
-    private static int JLeapYears(int jYear)
+    internal static int JLeapYears(int jYear)
     {
         int i;
         var Div33 = jYear / 33;

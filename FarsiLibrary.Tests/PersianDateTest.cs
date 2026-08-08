@@ -114,7 +114,9 @@ public class PersianDateTest
     [Test]
     public void Can_Create_Maximum_PersianDate_Year_Value()
     {
-        new Action(() => { _ = new PersianDate(PersianDate.MaxValue.Year, 1, 1); }).Should().NotThrow();
+        // PersianDate.MaxValue.Year is DateTime.MaxValue's (Gregorian) year, not a valid Persian year bound.
+        // The actual maximum supported Persian year is capped by PersianCalendar's supported range (1-9378).
+        new Action(() => { _ = new PersianDate(9378, 1, 1); }).Should().NotThrow();
     }
 
     [Test]

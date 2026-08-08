@@ -25,12 +25,16 @@ public static class DateTimeExtensions
 
     public static PersianDate Combine(this PersianDate datePart, PersianDate timePart)
     {
+        ArgumentNullException.ThrowIfNull(datePart);
+        ArgumentNullException.ThrowIfNull(timePart);
+
         return new PersianDate(datePart.Year, datePart.Month, datePart.Day, timePart.Hour, timePart.Minute, timePart.Second, timePart.Millisecond);
     }
 
     public static PersianDate EndOfMonth(this PersianDate dateTime)
     {
-        _ = dateTime.ToDateTime();
+        ArgumentNullException.ThrowIfNull(dateTime);
+
         var start = StartOfMonth(dateTime).ToDateTime();
         var pc = CultureHelper.PersianCalendar;
         var nextMonth = pc.AddMonths(start, 1);
@@ -40,11 +44,15 @@ public static class DateTimeExtensions
 
     public static PersianDate StartOfMonth(this PersianDate dateTime)
     {
+        ArgumentNullException.ThrowIfNull(dateTime);
+
         return new PersianDate(dateTime.Year, dateTime.Month, 1);
     }
 
     public static PersianDate EndOfWeek(this PersianDate dateTime)
     {
+        ArgumentNullException.ThrowIfNull(dateTime);
+
         var dt = dateTime.ToDateTime();
         var diff = GetEndOfWeekDiff(dt);
         var pc = CultureHelper.PersianCalendar;
@@ -54,6 +62,8 @@ public static class DateTimeExtensions
 
     public static PersianDate StartOfWeek(this PersianDate dateTime)
     {
+        ArgumentNullException.ThrowIfNull(dateTime);
+
         var dt = dateTime.ToDateTime();
         var diff = GetStartOfWeekDiff(dt);
         var pc = CultureHelper.PersianCalendar;
@@ -68,6 +78,8 @@ public static class DateTimeExtensions
     /// <returns></returns>
     public static DateTime ToDateTime(this PersianDate persianDate)
     {
+        ArgumentNullException.ThrowIfNull(persianDate);
+
         return PersianDateConverter.ToGregorianDateTime(persianDate);
     }
 

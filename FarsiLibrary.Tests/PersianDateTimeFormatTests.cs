@@ -19,7 +19,7 @@ public class PersianDateTimeFormatTests
         PersianDateTimeFormatInfo.GetWeekDayByIndex(0).Should().Be("شنبه");
         PersianDateTimeFormatInfo.GetWeekDayByIndex(1).Should().Be("یکشنبه");
         PersianDateTimeFormatInfo.GetWeekDayByIndex(2).Should().Be("دوشنبه");
-        PersianDateTimeFormatInfo.GetWeekDayByIndex(3).Should().Be("ﺳﻪشنبه");
+        PersianDateTimeFormatInfo.GetWeekDayByIndex(3).Should().Be("سهشنبه");
         PersianDateTimeFormatInfo.GetWeekDayByIndex(4).Should().Be("چهارشنبه");
         PersianDateTimeFormatInfo.GetWeekDayByIndex(5).Should().Be("پنجشنبه");
         PersianDateTimeFormatInfo.GetWeekDayByIndex(6).Should().Be("جمعه");
