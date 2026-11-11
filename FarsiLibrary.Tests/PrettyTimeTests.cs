@@ -9,16 +9,16 @@ using FarsiLibrary.Tests.Helpers;
 
 public class PrettyTimeTests
 {
-    [TestCase(-5, "4 days ago", "en-US") ]
+    [TestCase(-5, "5 days ago", "en-US")]
     [TestCase(5, "5 days from now", "en-US")]
     [TestCase(5, "پنج روز بعد", "fa-IR")]
-    [TestCase(-5, "چهار روز قبل", "fa-IR")]
+    [TestCase(-5, "پنج روز قبل", "fa-IR")]
     public void Can_Format_Days(int days, string expected, string cultureName)
     {
         using (new CultureSwitchContext(new CultureInfo(cultureName)))
         {
             var datetime = DateTime.Now;
-            var then = DateTime.Now.AddDays(days);
+            var then = datetime.AddDays(days);
             var pretty = new PrettyTime(datetime);
 
             var result = pretty.Format(then);
@@ -46,16 +46,16 @@ public class PrettyTimeTests
         }
     }
 
-    [TestCase(-10, "9 minutes ago", "en-US")]
+    [TestCase(-10, "10 minutes ago", "en-US")]
     [TestCase(10, "10 minutes from now", "en-US")]
     [TestCase(10, "ده دقیقه بعد", "fa-IR")]
-    [TestCase(-10, "نه دقیقه قبل", "fa-IR")]
+    [TestCase(-10, "ده دقیقه قبل", "fa-IR")]
     public void Can_Format_Minutes(int minutes, string expected, string cultureName)
     {
         using (new CultureSwitchContext(new CultureInfo(cultureName)))
         {
             var datetime = DateTime.Now;
-            var then = DateTime.Now.AddMinutes(minutes);
+            var then = datetime.AddMinutes(minutes);
             var pretty = new PrettyTime(datetime);
 
             var result = pretty.Format(then);
@@ -65,16 +65,16 @@ public class PrettyTimeTests
         }
     }
 
-    [TestCase(-2, "1 hour ago", "en-US")]
+    [TestCase(-2, "2 hours ago", "en-US")]
     [TestCase(2, "2 hours from now", "en-US")]
     [TestCase(2, "دو ساعت بعد", "fa-IR")]
-    [TestCase(-2, "يک ساعت قبل", "fa-IR")]
+    [TestCase(-2, "دو ساعت قبل", "fa-IR")]
     public void Can_Format_Hours(int hours, string expected, string cultureName)
     {
         using (new CultureSwitchContext(new CultureInfo(cultureName)))
         {
             var datetime = DateTime.Now;
-            var then = DateTime.Now.AddHours(hours);
+            var then = datetime.AddHours(hours);
             var pretty = new PrettyTime(datetime);
 
             var result = pretty.Format(then);
@@ -99,7 +99,7 @@ public class PrettyTimeTests
         using (new CultureSwitchContext(new CultureInfo(cultureName)))
         {
             var datetime = DateTime.Now;
-            var then = DateTime.Now.AddYears(years);
+            var then = datetime.AddYears(years);
             var pretty = new PrettyTime(datetime);
 
             var result = pretty.Format(then);
